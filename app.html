@@ -471,6 +471,8 @@
             align-items: center;
             gap: 10px;
             min-width: 0;
+            flex: 1 1 0;
+            overflow: hidden;
         }
 
         .cat-pill-dot {
@@ -486,7 +488,10 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 160px;
+            flex: 1 1 0;
+            min-width: 0;
+            /* max-width driven dynamically by JS based on sidebar width */
+            max-width: var(--cat-name-max, 160px);
         }
 
         .cat-pill-count {
@@ -2649,6 +2654,16 @@
                 const clamped = clamp(w, MIN_WIDTH, MAX_WIDTH);
                 sidebar.style.setProperty('--sidebar-width', clamped + 'px', 'important');
                 sidebar.style.width = clamped + 'px';
+                updateCatNameWidth(clamped);
+            }
+
+            function updateCatNameWidth(sidebarW) {
+                // Reserve: 12px padding*2 + 10px gap + 7px dot + 10px gap + ~56px badge + 3px border = ~110px
+                const reserved = 110;
+                // At MAX_WIDTH (420) names are fully visible (no clamp needed beyond natural)
+                // At MIN_WIDTH (180) names get tightest budget
+                const maxNameW = Math.max(60, sidebarW - reserved);
+                document.documentElement.style.setProperty('--cat-name-max', maxNameW + 'px');
             }
 
             handle.addEventListener('mousedown', e => {
@@ -2694,6 +2709,13 @@
                 isResizing = false;
                 handle.classList.remove('dragging');
             });
+        })();
+
+        // Set initial cat-name width based on default sidebar width
+        (function() {
+            const initW = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--sidebar-width')) || 288;
+            const reserved = 110;
+            document.documentElement.style.setProperty('--cat-name-max', Math.max(60, initW - reserved) + 'px');
         })();
 
         // ========================
