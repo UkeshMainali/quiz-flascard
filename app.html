@@ -1,0 +1,2727 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina — Smart Flashcards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0a0a10;
+            --bg2: #0f0f18;
+            --surface: rgba(255, 255, 255, 0.04);
+            --surface2: rgba(255, 255, 255, 0.07);
+            --surface3: rgba(255, 255, 255, 0.10);
+            --border: rgba(255, 255, 255, 0.08);
+            --border2: rgba(255, 255, 255, 0.14);
+            --text: #f0f0f8;
+            --text2: #a0a0b8;
+            --text3: #606078;
+            --accent: #7c6fef;
+            --accent2: #5b4fd4;
+            --accent-glow: rgba(124, 111, 239, 0.25);
+            --emerald: #10d9a0;
+            --rose: #f05572;
+            --amber: #f5a623;
+            --sky: #38bdf8;
+            --card-front: linear-gradient(145deg, #13132a, #0e0e1e);
+            --card-back: linear-gradient(145deg, #130e2a, #0a0e1e);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --font: 'Sora', sans-serif;
+            --mono: 'DM Mono', monospace;
+        }
+
+        [data-theme="light"] {
+            --bg: #f2f2f8;
+            --bg2: #e8e8f0;
+            --surface: rgba(255, 255, 255, 0.85);
+            --surface2: rgba(255, 255, 255, 0.92);
+            --surface3: rgba(255, 255, 255, 0.98);
+            --border: rgba(0, 0, 0, 0.08);
+            --border2: rgba(0, 0, 0, 0.14);
+            --text: #0f0f1e;
+            --text2: #4a4a6a;
+            --text3: #8888aa;
+            --accent-glow: rgba(124, 111, 239, 0.15);
+            --card-front: linear-gradient(145deg, #ffffff, #f4f4fc);
+            --card-back: linear-gradient(145deg, #f8f4ff, #f0f4ff);
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background .4s, color .4s;
+        }
+
+        /* === NOISE TEXTURE === */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .5;
+        }
+
+        /* === AMBIENT ORBS === */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 0;
+            transition: opacity .4s;
+        }
+
+        .orb1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(124, 111, 239, .18), transparent 70%);
+            top: -150px;
+            right: -100px;
+            animation: drift1 18s ease-in-out infinite;
+        }
+
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(16, 217, 160, .12), transparent 70%);
+            bottom: -100px;
+            left: -100px;
+            animation: drift2 22s ease-in-out infinite;
+        }
+
+        .orb3 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(240, 85, 114, .10), transparent 70%);
+            top: 50%;
+            left: 40%;
+            animation: drift3 26s ease-in-out infinite;
+        }
+
+        @keyframes drift1 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-40px, 60px) scale(1.1);
+            }
+        }
+
+        @keyframes drift2 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(60px, -40px) scale(1.15);
+            }
+        }
+
+        @keyframes drift3 {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-30px, 50px) scale(.9);
+            }
+        }
+
+        [data-theme="light"] .orb1,
+        .orb2,
+        .orb3 {
+            opacity: .5;
+        }
+
+        /* === TOP NAV === */
+        #topNav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 28px;
+            height: 64px;
+            background: rgba(10, 10, 16, .7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background .4s;
+        }
+
+        [data-theme="light"] #topNav {
+            background: rgba(242, 242, 248, .8);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), var(--emerald));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 800;
+            color: #fff;
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        .nav-brand-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text);
+            letter-spacing: -.3px;
+        }
+
+        .nav-brand-text span {
+            color: var(--accent);
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text2);
+            transition: all .2s;
+        }
+
+        .nav-stat .val {
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .nav-stat .streak-fire {
+            color: var(--amber);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-size: 17px;
+            transition: all .2s;
+            color: var(--text2);
+        }
+
+        .nav-btn:hover {
+            background: var(--surface3);
+            border-color: var(--border2);
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        /* === LAYOUT === */
+        #appLayout {
+            display: flex;
+            padding-top: 64px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* === SIDEBAR === */
+        #sidebar {
+            width: 288px;
+            flex-shrink: 0;
+            height: calc(100vh - 64px);
+            position: sticky;
+            top: 64px;
+            overflow-y: auto;
+            padding: 20px 0 32px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1), width .35s;
+            scrollbar-width: none;
+        }
+
+        #sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Section labels — clear visual anchors */
+        .sidebar-section-label {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--text3);
+            text-transform: uppercase;
+            padding: 20px 20px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-section-label:first-child {
+            padding-top: 4px;
+        }
+
+        .sidebar-section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Top nav item (Flashcards) */
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text2);
+            border-left: 2px solid transparent;
+            transition: all .2s;
+            text-decoration: none;
+            margin: 0 12px;
+            border-radius: var(--radius-sm);
+            border-left: none;
+            border: 1px solid transparent;
+        }
+
+        .sidebar-item:hover {
+            background: var(--surface2);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .sidebar-item.active {
+            background: var(--surface2);
+            color: var(--text);
+            border-color: var(--border2);
+            box-shadow: inset 3px 0 0 var(--emerald);
+        }
+
+        .sidebar-item .icon {
+            font-size: 16px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar-item .badge {
+            margin-left: auto;
+            background: var(--surface2);
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text3);
+        }
+
+        .sidebar-item.active .badge {
+            background: rgba(16, 217, 160, .12);
+            color: var(--emerald);
+        }
+
+        /* Search inside sidebar */
+        #searchWrapper {
+            padding: 0 12px 4px;
+        }
+
+        #searchWrapper #searchInput {
+            margin-bottom: 0;
+        }
+
+        /* Select-all row */
+        .select-all-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2px 20px 10px;
+        }
+
+        .select-all-row button {
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text2);
+            font-family: var(--font);
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all .2s;
+        }
+
+        .select-all-row button:hover {
+            background: var(--surface2);
+            color: var(--text);
+        }
+
+        .select-all-row .cat-count {
+            font-size: 11px;
+            color: var(--text3);
+        }
+
+        /* Category list container */
+        #categoriesList {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            padding: 0 12px;
+        }
+
+        /* Category row */
+        .cat-pill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 9px 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid transparent;
+            color: var(--text2);
+            transition: all .18s;
+            user-select: none;
+            line-height: 1.3;
+        }
+
+        .cat-pill:hover {
+            background: var(--surface2);
+            color: var(--text);
+            border-color: var(--border);
+        }
+
+        .cat-pill.active {
+            background: var(--surface2);
+            color: var(--text);
+            border-color: var(--border2);
+            box-shadow: inset 0px -1px 1px #ca9edc;
+        }
+        /* active dot becomes the left-bar color via currentColor */
+        .cat-pill.active .cat-pill-dot {
+            filter: brightness(1.2) saturate(1.4);
+        }
+
+        .cat-pill-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .cat-pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 1px;
+            box-shadow: 0 0 6px currentColor;
+        }
+
+        .cat-pill-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 160px;
+        }
+
+        .cat-pill-count {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text3);
+            background: var(--surface2);
+            padding: 2px 8px;
+            border-radius: 8px;
+            flex-shrink: 0;
+            margin-left: 6px;
+            font-family: var(--mono);
+        }
+
+        .cat-pill.active .cat-pill-count {
+            color: var(--text);
+            background: var(--surface3);
+            border: 1px solid var(--border2);
+        }
+
+        /* Filter chips */
+        .filter-row {
+            display: flex;
+            gap: 6px;
+            padding: 4px 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-chip {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text2);
+            transition: all .2s;
+        }
+
+        .filter-chip:hover {
+            border-color: var(--border2);
+            color: var(--text);
+            background: var(--surface2);
+        }
+
+        .filter-chip.active {
+            background: var(--surface3);
+            border-color: var(--border2);
+            color: var(--text);
+            box-shadow: inset 0 -2px 0 var(--emerald);
+            font-weight: 700;
+        }
+
+        /* Progress section */
+        .progress-mini {
+            margin: 0 20px 6px;
+            background: var(--surface2);
+            border-radius: 4px;
+            height: 4px;
+            overflow: hidden;
+        }
+
+        .progress-mini-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--emerald));
+            transition: width .5s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        /* === MAIN STUDY AREA === */
+        #studyArea {
+            flex: 1;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* === UPLOAD SCREEN === */
+        #uploadScreen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 64px);
+            text-align: center;
+            padding: 40px 20px;
+            gap: 24px;
+        }
+
+        .upload-glow {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(124, 111, 239, .3), rgba(16, 217, 160, .2));
+            border-radius: 30px;
+            border: 1px solid rgba(124, 111, 239, .3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            box-shadow: 0 0 60px rgba(124, 111, 239, .2);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .upload-title {
+            font-size: 38px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -.5px;
+        }
+
+        .upload-title .grad {
+            background: linear-gradient(135deg, var(--accent), var(--emerald));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .upload-sub {
+            font-size: 16px;
+            color: var(--text2);
+            max-width: 400px;
+            line-height: 1.6;
+        }
+
+        .upload-zone {
+            position: relative;
+            width: 100%;
+            max-width: 440px;
+            border: 2px dashed var(--border2);
+            border-radius: var(--radius);
+            padding: 36px;
+            cursor: pointer;
+            transition: all .3s;
+            background: var(--surface);
+        }
+
+        .upload-zone:hover,
+        .upload-zone.drag-over {
+            border-color: var(--emerald);
+            background: rgba(16, 217, 160, .06);
+            transform: translateY(-2px);
+        }
+
+        .upload-zone input {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .upload-zone-text {
+            font-size: 14px;
+            color: var(--text2);
+        }
+
+        .upload-zone-text strong {
+            color: var(--accent);
+        }
+
+        .upload-formats {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .fmt-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text3);
+        }
+
+        .upload-btn-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(124, 111, 239, .35);
+            transition: all .2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(124, 111, 239, .5);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            color: var(--text2);
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .btn-ghost:hover {
+            background: var(--surface3);
+            color: var(--text);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .upload-err {
+            color: var(--rose);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* === STUDY HEADER === */
+        #studyHeader {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .study-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .study-subtitle {
+            font-size: 13px;
+            color: var(--text2);
+            margin-top: 2px;
+        }
+
+        .study-meta-pills {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .meta-pill {
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text2);
+        }
+
+        .meta-pill.green {
+            color: var(--emerald);
+            background: rgba(16, 217, 160, .08);
+            border-color: rgba(16, 217, 160, .2);
+        }
+
+        .meta-pill.purple {
+            color: var(--accent);
+            background: rgba(124, 111, 239, .08);
+            border-color: rgba(124, 111, 239, .2);
+        }
+
+        .meta-pill.rose {
+            color: var(--rose);
+            background: rgba(240, 85, 114, .08);
+            border-color: rgba(240, 85, 114, .2);
+        }
+
+        /* === FLASHCARD === */
+        #cardContainer {
+            width: 100%;
+            perspective: 1400px;
+            margin-bottom: 28px;
+        }
+
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            transform-style: preserve-3d;
+            transition: transform .55s cubic-bezier(.4, 0, .2, 1);
+            cursor: pointer;
+        }
+
+        .flashcard:hover .card-shine {
+            opacity: 1;
+        }
+
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: var(--radius);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 48px;
+            border: 1px solid var(--border2);
+            overflow: hidden;
+        }
+
+        .card-front {
+            background: var(--card-front);
+        }
+
+        .card-back {
+            background: var(--card-back);
+            transform: rotateY(180deg);
+        }
+
+        /* Holographic shimmer on front */
+        .card-front::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(124, 111, 239, .08) 0%, transparent 50%, rgba(16, 217, 160, .06) 100%);
+            border-radius: var(--radius);
+        }
+
+        .card-back::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(240, 85, 114, .07) 0%, transparent 50%, rgba(56, 189, 248, .06) 100%);
+            border-radius: var(--radius);
+        }
+
+        /* Corner accents */
+        .card-front::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(124, 111, 239, .15), transparent);
+            border-radius: var(--radius) 0 80px 0;
+        }
+
+        .card-shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, .06) 50%, transparent 60%);
+            border-radius: var(--radius);
+            opacity: 0;
+            transition: opacity .3s;
+            pointer-events: none;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            left: 24px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-type-tag {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .card-front .card-type-tag {
+            background: rgba(124, 111, 239, .15);
+            color: var(--accent);
+        }
+
+        .card-back .card-type-tag {
+            background: rgba(240, 85, 114, .12);
+            color: var(--rose);
+        }
+
+        .card-genre-tag {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, .06);
+            color: var(--text3);
+            border: 1px solid var(--border);
+        }
+
+        .card-num {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--text3);
+            background: var(--surface2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 18px;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .card-text {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text);
+            text-align: center;
+            line-height: 1.55;
+            max-width: 560px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-hint {
+            position: absolute;
+            bottom: 20px;
+            font-size: 12px;
+            color: var(--text3);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-hint kbd {
+            padding: 1px 7px;
+            border-radius: 5px;
+            font-family: var(--mono);
+            font-size: 10px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            color: var(--text3);
+        }
+
+        /* === PROGRESS BAR === */
+        #progressTrack {
+            width: 100%;
+            height: 5px;
+            background: var(--surface2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        #progressFill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--emerald));
+            border-radius: 10px;
+            transition: width .5s cubic-bezier(.4, 0, .2, 1);
+            position: relative;
+        }
+
+        #progressFill::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 20px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .4));
+            border-radius: 10px;
+            animation: shimmerProg 1.5s ease-in-out infinite;
+        }
+
+        @keyframes shimmerProg {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* === CONTROLS === */
+        #controls {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .ctrl-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: 50px;
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text2);
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .ctrl-btn:hover:not(:disabled) {
+            background: var(--surface3);
+            color: var(--text);
+            border-color: var(--border2);
+            transform: translateY(-1px);
+        }
+
+        .ctrl-btn:disabled {
+            opacity: .3;
+            cursor: not-allowed;
+        }
+
+        .ctrl-btn-icon {
+            font-size: 18px;
+        }
+
+        .ctrl-center {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-counter {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            background: var(--surface2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+        }
+
+        .flip-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            color: #fff;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(124, 111, 239, .3);
+            transition: all .2s;
+        }
+
+        .flip-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(124, 111, 239, .45);
+        }
+
+        /* === KNOWN TOGGLE === */
+        #knownRow {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            border-radius: var(--radius-sm);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            margin-top: 16px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .known-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text2);
+        }
+
+        .toggle {
+            position: relative;
+            width: 46px;
+            height: 26px;
+            cursor: pointer;
+        }
+
+        .toggle input {
+            opacity: 0;
+            position: absolute;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-track {
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+            transition: all .3s;
+        }
+
+        .toggle input:checked+.toggle-track {
+            background: var(--emerald);
+            border-color: var(--emerald);
+        }
+
+        .toggle-thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform .3s cubic-bezier(.4, 0, .2, 1);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+        }
+
+        .toggle input:checked~.toggle-thumb {
+            transform: translateX(20px);
+        }
+
+        .known-stats {
+            display: flex;
+            gap: 12px;
+        }
+
+        .kstat {
+            text-align: center;
+        }
+
+        .kstat-num {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .kstat-label {
+            font-size: 10px;
+            color: var(--text3);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        /* === EMPTY STATE === */
+        #emptyState {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            gap: 16px;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .empty-icon {
+            font-size: 56px;
+            opacity: .5;
+        }
+
+        .empty-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .empty-sub {
+            font-size: 14px;
+            color: var(--text2);
+            max-width: 300px;
+        }
+
+        /* === SHORTCUT BAR === */
+        #shortcutBar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .shortcut-hint {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: var(--text3);
+        }
+
+        .shortcut-hint kbd {
+            padding: 2px 7px;
+            border-radius: 5px;
+            font-family: var(--mono);
+            font-size: 10px;
+            background: var(--surface2);
+            border: 1px solid var(--border2);
+        }
+
+        /* === MOBILE NAV === */
+        #mobileNav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 16, .9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            padding: 8px 20px 16px;
+            justify-content: space-around;
+        }
+
+        [data-theme="light"] #mobileNav {
+            background: rgba(242, 242, 248, .9);
+        }
+
+        .mob-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            color: var(--text3);
+            font-size: 11px;
+            font-weight: 600;
+            transition: all .2s;
+        }
+
+        .mob-nav-item .mnav-icon {
+            font-size: 20px;
+        }
+
+        .mob-nav-item.active {
+            color: var(--emerald);
+        }
+
+        .mob-nav-item:hover {
+            color: var(--text2);
+        }
+
+        /* === MOBILE SIDEBAR OVERLAY === */
+        #sidebarOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            background: rgba(0, 0, 0, .5);
+            backdrop-filter: blur(4px);
+        }
+
+        /* === MOBILE SIDEBAR SHEET === */
+        #mobileSidebar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 95;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 24px 24px 0 0;
+            padding: 24px 20px 40px;
+            max-height: 80vh;
+            overflow-y: auto;
+            transform: translateY(100%);
+            transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        #mobileSidebar.open {
+            transform: translateY(0);
+        }
+
+        .sheet-handle {
+            width: 40px;
+            height: 4px;
+            border-radius: 2px;
+            background: var(--border2);
+            margin: 0 auto 20px;
+        }
+
+        /* Search inside sidebar */
+        #searchWrapper {
+            padding: 0 12px 4px;
+            position: relative;
+        }
+
+        #searchWrapper .search-icon {
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-60%);
+            font-size: 13px;
+            color: var(--text3);
+            pointer-events: none;
+        }
+
+        #searchWrapper #searchInput {
+            margin-bottom: 0;
+        }
+
+        /* === SEARCH === */
+        #searchInput {
+            width: 100%;
+            padding: 8px 12px 8px 34px;
+            border-radius: var(--radius-sm);
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 13px;
+            outline: none;
+            transition: all .2s;
+        }
+
+        #searchInput::placeholder {
+            color: var(--text3);
+        }
+
+        #searchInput:focus {
+            border-color: var(--border2);
+            background: var(--surface3);
+            box-shadow: 0 0 0 3px rgba(16,217,160,.08);
+        }
+
+        /* === ANIMATIONS === */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(.85);
+            }
+
+            60% {
+                transform: scale(1.04);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .anim-slideUp {
+            animation: slideUp .45s cubic-bezier(.4, 0, .2, 1) both;
+        }
+
+        .anim-scaleIn {
+            animation: scaleIn .4s cubic-bezier(.4, 0, .2, 1) both;
+        }
+
+        /* Card transition animation */
+        .card-exit {
+            animation: cardExit .2s ease forwards;
+        }
+
+        .card-enter {
+            animation: cardEnter .3s cubic-bezier(.4, 0, .2, 1) forwards;
+        }
+
+        @keyframes cardExit {
+            to {
+                opacity: 0;
+                transform: translateX(-30px) scale(.97);
+            }
+        }
+
+        @keyframes cardEnter {
+            from {
+                opacity: 0;
+                transform: translateX(30px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .card-exit-left {
+            animation: cardExitLeft .2s ease forwards;
+        }
+
+        .card-enter-right {
+            animation: cardEnterRight .3s cubic-bezier(.4, 0, .2, 1) forwards;
+        }
+
+        @keyframes cardExitLeft {
+            to {
+                opacity: 0;
+                transform: translateX(30px) scale(.97);
+            }
+        }
+
+        @keyframes cardEnterRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px) scale(.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* Confetti particles */
+        .confetti-particle {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            animation: confettiDrop 2s ease-in forwards;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes confettiDrop {
+            0% {
+                transform: translateY(-20px) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* === TOAST === */
+        #toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--surface3);
+            border: 1px solid var(--border2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            z-index: 9000;
+            opacity: 0;
+            transition: all .3s;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* === RESPONSIVE === */
+        @media(max-width:1024px) {
+            #sidebar {
+                width: 240px;
+            }
+
+            #studyArea {
+                padding: 24px;
+            }
+        }
+
+        @media(max-width:768px) {
+            #sidebar {
+                display: none;
+            }
+
+            #appLayout {
+                padding-bottom: 70px;
+            }
+
+            #mobileNav {
+                display: flex;
+            }
+
+            #studyArea {
+                padding: 20px 16px;
+            }
+
+            .card-text {
+                font-size: 18px;
+            }
+
+            .flashcard {
+                height: 340px;
+            }
+
+            .card-face {
+                padding: 32px 24px;
+            }
+
+            .upload-title {
+                font-size: 28px;
+            }
+
+            #topNav {
+                padding: 0 16px;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            #studyArea {
+                max-width: 100%;
+            }
+        }
+
+        @media(max-width:480px) {
+            .flashcard {
+                height: 300px;
+            }
+
+            .card-text {
+                font-size: 16px;
+            }
+
+            .ctrl-btn span.ctrl-label {
+                display: none;
+            }
+
+            .card-face {
+                padding: 24px 16px;
+            }
+
+            #controls {
+                justify-content: center;
+            }
+
+            .flip-btn {
+                padding: 10px 20px;
+            }
+        }
+
+        /* Color coding per category */
+        .color-0 .cat-pill-dot {
+            background: #7c6fef;
+        }
+
+        .color-1 .cat-pill-dot {
+            background: #10d9a0;
+        }
+
+        .color-2 .cat-pill-dot {
+            background: #f05572;
+        }
+
+        .color-3 .cat-pill-dot {
+            background: #f5a623;
+        }
+
+        .color-4 .cat-pill-dot {
+            background: #38bdf8;
+        }
+
+        .color-5 .cat-pill-dot {
+            background: #a78bfa;
+        }
+
+        .color-6 .cat-pill-dot {
+            background: #fb7185;
+        }
+
+        .color-7 .cat-pill-dot {
+            background: #34d399;
+        }
+
+        .color-8 .cat-pill-dot {
+            background: #fbbf24;
+        }
+
+        .color-9 .cat-pill-dot {
+            background: #60a5fa;
+        }
+
+        .color-10 .cat-pill-dot {
+            background: #e879f9;
+        }
+
+        .color-11 .cat-pill-dot {
+            background: #4ade80;
+        }
+
+        .color-12 .cat-pill-dot {
+            background: #f97316;
+        }
+
+
+        /* === RESIZE HANDLE === */
+        #sidebarResizeHandle {
+            position: absolute;
+            top: 0;
+            right: -4px;
+            width: 8px;
+            height: 100%;
+            cursor: col-resize;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #sidebarResizeHandle::after {
+            content: '';
+            width: 2px;
+            height: 40px;
+            background: var(--border2);
+            border-radius: 2px;
+            transition: background .2s, height .2s;
+        }
+        #sidebarResizeHandle:hover::after,
+        #sidebarResizeHandle.dragging::after {
+            background: var(--accent);
+            height: 60px;
+        }
+
+        /* Sidebar now position relative for resize handle */
+        #sidebar {
+            position: relative;
+        }
+
+        /* Fix sidebar to not use flex-shrink:0 fixed width - use CSS var instead */
+        #sidebar {
+            width: var(--sidebar-width, 288px);
+            min-width: 180px;
+            max-width: 420px;
+        }
+
+        /* === IMPROVED CONTROLS LAYOUT === */
+        #controls {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+        #controls #prevBtn { justify-self: start; }
+        #controls .ctrl-center { justify-self: center; display: flex; align-items: center; gap: 10px; }
+        #controls #nextBtn { justify-self: end; }
+
+        @media(max-width:480px) {
+            #controls {
+                grid-template-columns: auto 1fr auto;
+                gap: 8px;
+            }
+            #controls .ctrl-center {
+                gap: 6px;
+            }
+            .flip-btn { padding: 10px 14px; font-size: 13px; }
+            .card-counter { padding: 8px 10px; font-size: 13px; }
+        }
+
+        /* === MOBILE IMPROVEMENTS === */
+        @media(max-width:768px) {
+            #appLayout { padding-bottom: 80px; }
+            #studyArea { padding: 16px 12px; }
+            #mobileSidebar { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 40px); }
+        }
+
+        /* === SIDEBAR CATEGORY FILTER - MATCHES THEME === */
+        /* Override old cat-pill styles for consistent theming */
+        .sidebar-section-label {
+            background: transparent;
+        }
+
+        /* Filter chips match sidebar style */
+        .filter-chip {
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 10px;
+            padding: 7px 14px;
+        }
+
+        /* Sidebar header section */
+        .sidebar-deck-info {
+            margin: 0 12px 12px;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            background: linear-gradient(135deg, rgba(124,111,239,.12), rgba(16,217,160,.06));
+            border: 1px solid rgba(124,111,239,.2);
+        }
+        .sidebar-deck-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .sidebar-deck-stats {
+            font-size: 11px;
+            color: var(--text2);
+            margin-top: 2px;
+        }
+        .sidebar-progress-wrap {
+            margin: 6px 0 0;
+        }
+
+        /* Swipe visual feedback */
+        .swipe-hint-left,
+        .swipe-hint-right {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            opacity: 0;
+            transition: opacity .2s;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .swipe-hint-left {
+            left: 16px;
+        }
+
+        .swipe-hint-right {
+            right: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Ambient orbs -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <!-- TOP NAV -->
+    <nav id="topNav">
+        <a class="nav-brand" href="#">
+            <div class="nav-logo">L</div>
+            <span class="nav-brand-text">Lumina<span>.</span></span>
+        </a>
+        <div class="nav-center">
+            <div class="nav-stat">
+                <i class="fa-solid fa-fire streak-fire"></i>
+                <span id="navStreak" class="val">0</span>
+                <span>streak</span>
+            </div>
+            <div class="nav-stat">
+                <i class="fa-solid fa-book-open" style="color:var(--sky)"></i>
+                <span id="navTotal" class="val">0</span>
+                <span>cards</span>
+            </div>
+            <div class="nav-stat">
+                <i class="fa-solid fa-circle-check" style="color:var(--emerald)"></i>
+                <span id="navKnown" class="val">0</span>
+                <span>known</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn" id="themeToggle" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+            <button class="nav-btn" id="shuffleBtn" title="Shuffle cards"><i class="fa-solid fa-shuffle"></i></button>
+            <button class="nav-btn" id="reuploadBtn" title="Change deck" style="display:none;"><i class="fa-solid fa-folder-open"></i></button>
+        </div>
+    </nav>
+
+    <!-- TOAST -->
+    <div id="toast"><i class="fa-solid fa-check" style="color:var(--emerald)"></i> <span id="toastMsg">Done</span></div>
+
+    <!-- MAIN LAYOUT -->
+    <div id="appLayout">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar">
+
+            <!-- Study mode -->
+            <div class="sidebar-section-label">Study</div>
+            <div style="padding:0 12px 4px;">
+                <div class="sidebar-item active" id="navStudy">
+                    <span class="icon"><i class="fa-solid fa-bolt"></i></span> Flashcards
+                    <span class="badge" id="sideActiveCount">0</span>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="sidebar-section-label">Categories</div>
+            <div id="searchWrapper">
+                <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" id="searchInput" placeholder="Search categories...">
+            </div>
+            <div class="select-all-row">
+                <span class="cat-count" id="catCountLabel">0 categories</span>
+                <button id="selectAllBtn">Select All</button>
+            </div>
+            <div id="categoriesList"></div>
+
+            <!-- Filter -->
+            <div class="sidebar-section-label">Filter by Status</div>
+            <div class="filter-row">
+                <div class="filter-chip active" data-filter="all">All</div>
+                <div class="filter-chip" data-filter="unknown">Unknown</div>
+                <div class="filter-chip" data-filter="known">Known</div>
+            </div>
+
+            <!-- Progress -->
+            <div class="sidebar-section-label">Mastery</div>
+            <div class="progress-mini">
+                <div class="progress-mini-fill" id="sideProgressFill" style="width:0%"></div>
+            </div>
+            <div
+                style="display:flex;justify-content:space-between;padding:6px 20px 0;font-size:11px;color:var(--text3);">
+                <span id="sideProgressLabel">0% complete</span>
+                <span id="sideCardCounts">0/0</span>
+            </div>
+
+            <div id="sidebarResizeHandle" title="Drag to resize"></div>
+        </aside>
+
+        <!-- STUDY AREA -->
+        <main id="studyArea">
+
+            <!-- UPLOAD SCREEN -->
+            <div id="uploadScreen">
+                <div class="upload-glow"><i class="fa-solid fa-brain" style="font-size:52px;background:linear-gradient(135deg,var(--accent),var(--emerald));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"></i></div>
+                <div>
+                    <div class="upload-title"><span class="grad">Smart</span> Flashcards</div>
+                    <div class="upload-title">for Serious Learners</div>
+                </div>
+                <p class="upload-sub">Upload your JSON deck or use the built-in Nepal Quiz Pack to get started.</p>
+                <div class="upload-zone" id="uploadZone">
+                    <input type="file" id="fileInput" accept=".json">
+                    <p class="upload-zone-text">Drop your <strong>.json</strong> file here, or click to browse</p>
+                </div>
+                <div class="upload-btn-row">
+                    <button class="btn-primary" id="loadDefaultBtn"><i class="fa-solid fa-rocket"></i> Load Nepal Quiz (649 cards)</button>
+                    <button class="btn-ghost" onclick="document.getElementById('fileInput').click()"><i class="fa-solid fa-folder-open"></i> Upload Custom Deck</button>
+                </div>
+                <div class="upload-formats">
+                    <span class="fmt-badge">JSON format</span>
+                    <span class="fmt-badge">{ question, answer, genre }</span>
+                </div>
+                <div id="uploadErr" class="upload-err"></div>
+            </div>
+
+            <!-- STUDY VIEW -->
+            <div id="studyView" style="display:none;width:100%;">
+                <div id="studyHeader">
+                    <div>
+                        <div class="study-title" id="deckTitle">Flashcards</div>
+                        <div class="study-subtitle" id="deckSubtitle">Click any card to reveal the answer</div>
+                    </div>
+                    <div class="study-meta-pills">
+                        <div class="meta-pill purple" id="metaCards">0 cards</div>
+                        <div class="meta-pill green" id="metaKnown">0 known</div>
+                        <div class="meta-pill rose" id="metaLeft">0 left</div>
+                    </div>
+                </div>
+
+                <!-- PROGRESS -->
+                <div id="progressTrack">
+                    <div id="progressFill" style="width:0%"></div>
+                </div>
+
+                <!-- FLASHCARD -->
+                <div id="cardContainer">
+                    <div class="flashcard" id="flashcard">
+                        <!-- FRONT -->
+                        <div class="card-face card-front">
+                            <div class="card-shine"></div>
+                            <div class="card-badge">
+                                <span class="card-type-tag">Question</span>
+                                <span class="card-genre-tag" id="questionGenre">—</span>
+                            </div>
+                            <div class="card-num" id="cardNumFront">1 / 1</div>
+                            <div class="card-icon"><i class="fa-regular fa-lightbulb" style="font-size:40px;color:var(--accent);"></i></div>
+                            <div class="card-text" id="questionText"></div>
+                            <div class="card-hint"><kbd>Space</kbd> to flip · <kbd>←</kbd><kbd>→</kbd> to navigate</div>
+                            <div class="swipe-hint-left"><i class="fa-solid fa-hand-point-left"></i></div>
+                            <div class="swipe-hint-right"><i class="fa-solid fa-hand-point-right"></i></div>
+                        </div>
+                        <!-- BACK -->
+                        <div class="card-face card-back">
+                            <div class="card-shine"></div>
+                            <div class="card-badge">
+                                <span class="card-type-tag"
+                                    style="background:rgba(240,85,114,.12);color:var(--rose);">Answer</span>
+                                <span class="card-genre-tag" id="answerGenre">—</span>
+                            </div>
+                            <div class="card-num" id="cardNumBack">1 / 1</div>
+                            <div class="card-icon"><i class="fa-solid fa-star-of-life" style="font-size:36px;color:var(--emerald);"></i></div>
+                            <div class="card-text" id="answerText"></div>
+                            <div class="card-hint">Press <kbd>K</kbd> to mark as known</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMPTY STATE -->
+                <div id="emptyState">
+                    <div class="empty-icon"><i class="fa-solid fa-bullseye" style="font-size:56px;opacity:.5;"></i></div>
+                    <div class="empty-title">No cards match your filters</div>
+                    <div class="empty-sub">Try selecting different categories or adjusting the filter above.</div>
+                    <button class="btn-ghost" onclick="resetFilters()" style="margin-top:8px;">Reset Filters</button>
+                </div>
+
+                <!-- CONTROLS -->
+                <div id="controls">
+                    <button class="ctrl-btn" id="prevBtn" disabled>
+                        <span class="ctrl-btn-icon"><i class="fa-solid fa-chevron-left"></i></span>
+                        <span class="ctrl-label">Prev</span>
+                    </button>
+                    <div class="ctrl-center">
+                        <button class="flip-btn" id="flipBtn"><i class="fa-solid fa-rotate"></i> Flip</button>
+                        <span class="card-counter" id="cardCounter">1 / 1</span>
+                    </div>
+                    <button class="ctrl-btn" id="nextBtn">
+                        <span class="ctrl-label">Next</span>
+                        <span class="ctrl-btn-icon"><i class="fa-solid fa-chevron-right"></i></span>
+                    </button>
+                </div>
+
+                <!-- KNOWN ROW -->
+                <div id="knownRow">
+                    <div class="known-label">
+                        <label class="toggle">
+                            <input type="checkbox" id="knownCheckbox">
+                            <div class="toggle-track"></div>
+                            <div class="toggle-thumb"></div>
+                        </label>
+                        Mark as Known
+                    </div>
+                    <div class="known-stats">
+                        <div class="kstat">
+                            <div class="kstat-num" id="statTotal">0</div>
+                            <div class="kstat-label">Total</div>
+                        </div>
+                        <div class="kstat">
+                            <div class="kstat-num" style="color:var(--emerald)" id="statKnown">0</div>
+                            <div class="kstat-label">Known</div>
+                        </div>
+                        <div class="kstat">
+                            <div class="kstat-num" style="color:var(--rose)" id="statUnknown">0</div>
+                            <div class="kstat-label">Left</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SHORTCUT BAR -->
+                <div id="shortcutBar">
+                    <div class="shortcut-hint"><kbd>Space</kbd> Flip</div>
+                    <div class="shortcut-hint"><kbd>←</kbd><kbd>→</kbd> Navigate</div>
+                    <div class="shortcut-hint"><kbd>K</kbd> Known</div>
+                    <div class="shortcut-hint"><kbd>S</kbd> Shuffle</div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MOBILE NAV -->
+    <nav id="mobileNav">
+        <div class="mob-nav-item active" id="mobNavStudy">
+            <span class="mnav-icon"><i class="fa-solid fa-bolt"></i></span>Study
+        </div>
+        <div class="mob-nav-item" id="mobNavCats">
+            <span class="mnav-icon"><i class="fa-solid fa-layer-group"></i></span>Categories
+        </div>
+        <div class="mob-nav-item" id="mobNavFilter">
+            <span class="mnav-icon"><i class="fa-solid fa-filter"></i></span>Filter
+        </div>
+    </nav>
+
+    <!-- MOBILE SIDEBAR SHEET -->
+    <div id="sidebarOverlay"></div>
+    <div id="mobileSidebar">
+        <div class="sheet-handle"></div>
+        <div class="sidebar-section-label" style="padding-top:0">Categories</div>
+        <div id="searchWrapper2">
+            <div style="position:relative;padding:0 0 12px;">
+                <span style="position:absolute;left:12px;top:10px;font-size:14px;color:var(--text3);"><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="text" id="searchInput2" placeholder="Search categories..."
+                    style="width:100%;padding:9px 14px 9px 38px;border-radius:var(--radius-sm);background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:var(--font);font-size:13px;outline:none;">
+            </div>
+        </div>
+        <div class="select-all-row">
+            <span class="cat-count" id="mobCatCountLabel">0 categories</span>
+            <button id="mobSelectAllBtn">Select All</button>
+        </div>
+        <div id="mobCategoriesList"></div>
+        <div class="sidebar-section-label">Filter by Status</div>
+        <div class="filter-row" id="mobFilterRow">
+            <div class="filter-chip active" data-filter="all">All</div>
+            <div class="filter-chip" data-filter="unknown">Unknown</div>
+            <div class="filter-chip" data-filter="known">Known</div>
+        </div>
+    </div>
+
+    <script>
+        // ========================
+        // DATA & STATE
+        // ========================
+        const BUILTIN_QUESTIONS = [{ "question": "Which Nepali mountain climber made history in 2023 by becoming the first woman to climb Mount Everest twice in a single season?", "answer": "Lhakpa Sherpa", "genre": "Current Affairs (Nepal)" }, { "question": "What is the name of Nepal's first domestically built electric car, unveiled in 2024?", "answer": "EV Mustang", "genre": "Current Affairs (Nepal)" }, { "question": "Which major digital payment system was integrated into Nepal's banking system in 2024, allowing cross-border transactions with India?", "answer": "Unified Payments Interface (UPI)", "genre": "Current Affairs (Nepal)" }, { "question": "Which country assumed the presidency of the United Nations Security Council for December 2024?", "answer": "Russia", "genre": "Current Affairs (International)" }, { "question": "Which two South American countries officially joined the BRICS alliance in 2024?", "answer": "Argentina and Egypt (Note: Argentina later declined, Egypt joined)", "genre": "Current Affairs (International)" }, { "question": "What is the name of the deepfake audio call scam that targeted a major UK company in 2024, highlighting AI-powered fraud risks?", "answer": "The AI-generated CEO voice scam (targeting London-based hedge fund)", "genre": "Current Affairs (Technology)" }, { "question": "Which country successfully landed its 'Chandrayaan-3' mission on the Moon's south pole in August 2023?", "answer": "India", "genre": "Current Affairs (Science)" }, { "question": "Which social media platform was rebranded to 'X' in 2023?", "answer": "Twitter", "genre": "Current Affairs (Technology)" }, { "question": "Which Nepali scientist was awarded the 'Dr. R.L. Sanghvi Young Scientist Award 2024' in the field of Chemical Sciences?", "answer": "Dr. Sujan Malla", "genre": "Awards (Nepal)" }, { "question": "Who won the 2023 Nobel Prize in Physics for experimental methods that generate attosecond pulses of light?", "answer": "Pierre Agostini, Ferenc Krausz, and Anne L'Huillier", "genre": "Important Awards" }, { "question": "Which film won the Academy Award (Oscar) for Best Picture in 2024?", "answer": "Oppenheimer", "genre": "Important Awards" }, { "question": "Who won the FIFA Women's World Cup in 2023?", "answer": "Spain", "genre": "Sports" }, { "question": "Which country won the ICC Men's Cricket World Cup in 2023?", "answer": "Australia", "genre": "Sports" }, { "question": "Which Nepali para-athlete won a gold medal in the men's javelin throw F46 category at the 2023 Asian Para Games?", "answer": "Sagar Thapa", "genre": "Sports (Nepal)" }, { "question": "Who won the 2024 Ballon d'Or award for the world's best male footballer?", "answer": "Lionel Messi (for his 2022 World Cup performance, awarded in 2023) - Note: As of late 2024, the 2024 winner is not yet announced. A more current answer would be Jude Bellingham (expected frontrunner). For accuracy, state 'Award not yet announced as of late 2024'.", "genre": "Sports" }, { "question": "What does the acronym 'API' stand for in software development?", "answer": "Application Programming Interface", "genre": "Science & Technology (CSIT)" }, { "question": "Which programming paradigm is primarily used in the Java language?", "answer": "Object-Oriented Programming (OOP)", "genre": "Science & Technology (CSIT)" }, { "question": "In database management, what does 'ACID' stand for?", "answer": "Atomicity, Consistency, Isolation, Durability", "genre": "Science & Technology (CSIT)" }, { "question": "What is the name of the protocol that secures communication over a computer network, widely used for HTTPS?", "answer": "Transport Layer Security (TLS), or its predecessor SSL", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the 'ChatGPT' AI chatbot, released in late 2022?", "answer": "OpenAI", "genre": "Science & Technology (AI)" }, { "question": "What is the name of Google's most advanced large language model AI, released as a competitor to ChatGPT?", "answer": "Gemini (formerly Bard)", "genre": "Science & Technology (AI)" }, { "question": "In cybersecurity, what is a 'Zero-Day' vulnerability?", "answer": "A software security flaw that is unknown to the vendor and has no patch available, making attackers have 'zero days' to exploit it.", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'IoT' stand for?", "answer": "Internet of Things", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure operates on a 'First In, First Out' (FIFO) principle?", "answer": "Queue", "genre": "Science & Technology (CSIT)" }, { "question": "What is the name of the algorithm used by Bitcoin for achieving distributed consensus without a central authority?", "answer": "Proof of Work (PoW)", "genre": "Science & Technology (CSIT)" }, { "question": "What is the name of the world's first scientific and practical quantum computer, launched by IBM in 2023?", "answer": "IBM Quantum System Two", "genre": "Inventions & Discoveries" }, { "question": "Which NASA rover discovered evidence of past water activity and organic molecules on Mars?", "answer": "Perseverance Rover (also Curiosity)", "genre": "Inventions & Discoveries" }, { "question": "What is 'CRISPR-Cas9' primarily used for?", "answer": "Gene editing (precise modification of DNA within organisms)", "genre": "Inventions & Discoveries" }, { "question": "Which material, a single layer of carbon atoms arranged in a hexagonal lattice, won the Nobel Prize in Physics in 2010?", "answer": "Graphene", "genre": "Inventions & Discoveries" }, { "question": "What was the name of the first artificial Earth satellite, launched in 1957?", "answer": "Sputnik 1", "genre": "Inventions & Discoveries" }, { "question": "Who is credited with inventing the World Wide Web in 1989?", "answer": "Tim Berners-Lee", "genre": "Inventions & Discoveries" }, { "question": "What does the 'HTTP' in a web URL stand for?", "answer": "HyperText Transfer Protocol", "genre": "Inventions & Discoveries" }, { "question": "Which company first introduced the GUI (Graphical User Interface) for personal computers?", "answer": "Xerox (at PARC), but popularized by Apple with the Macintosh.", "genre": "Inventions & Discoveries" }, { "question": "What is the name of the virus that causes the disease COVID-19?", "answer": "SARS-CoV-2 (Severe Acute Respiratory Syndrome Coronavirus 2)", "genre": "Health" }, { "question": "Which type of vaccine technology was used in Pfizer-BioNTech and Moderna COVID-19 vaccines?", "answer": "mRNA (messenger RNA) technology", "genre": "Health" }, { "question": "What is the term for a disease that is prevalent over a whole country or the world?", "answer": "Pandemic", "genre": "Health" }, { "question": "What does 'WHO' stand for?", "answer": "World Health Organization", "genre": "Health" }, { "question": "Which organ in the human body produces insulin?", "answer": "Pancreas", "genre": "Health" }, { "question": "What is the name of NASA's mission that successfully returned a sample from an asteroid to Earth in 2023?", "answer": "OSIRIS-REx (from asteroid Bennu)", "genre": "Space" }, { "question": "Which country's space agency launched the 'Aditya-L1' mission to study the Sun in 2023?", "answer": "India (ISRO)", "genre": "Space" }, { "question": "What is the name of the most powerful space telescope currently operational, launched in 2021?", "answer": "James Webb Space Telescope (JWST)", "genre": "Space" }, { "question": "Which planet in our solar system has the most moons, as confirmed in 2023?", "answer": "Saturn", "genre": "Space" }, { "question": "What is the name of the first private mission to successfully land on the Moon, achieved in 2024?", "answer": "Intuitive Machines' IM-1 mission (Odysseus lander)", "genre": "Space" }, { "question": "Which protocol is the foundation of data communication on the World Wide Web?", "answer": "HTTP (Hypertext Transfer Protocol)", "genre": "Science & Technology (CSIT)" }, { "question": "What is the primary function of a DNS server?", "answer": "To translate human-readable domain names (like google.com) into machine-readable IP addresses.", "genre": "Science & Technology (CSIT)" }, { "question": "In object-oriented programming, what is the concept of hiding internal implementation details called?", "answer": "Encapsulation", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure uses a 'Last In, First Out' (LIFO) principle?", "answer": "Stack", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'SQL' stand for?", "answer": "Structured Query Language", "genre": "Science & Technology (CSIT)" }, { "question": "Which Nepali university launched Nepal's first supercomputer, 'PARAM Kanchenjunga', in 2023?", "answer": "Kathmandu University", "genre": "Current Affairs (Nepal)" }, { "question": "What is the name of Nepal's digital identity system initiated by the government in 2024?", "answer": "National Digital Identity (NDI) or Digital ID", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali tech company became the first to list on the Stock Exchange in 2023?", "answer": "CG Telecom", "genre": "Current Affairs (Nepal)" }, { "question": "Which international tech giant opened its first Cloud Region in Nepal in 2023?", "answer": "Google (Google Cloud Region)", "genre": "Current Affairs (Nepal)" }, { "question": "What percentage of Nepal's population has internet access as per 2024 reports?", "answer": "Approximately 80-85%", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali startup won the 'Seedstars World' competition in 2023 for their agri-tech solution?", "answer": "Smart Krishi", "genre": "Current Affairs (Nepal)" }, { "question": "What is the name of Nepal's digital payment wallet launched by Nepal Rastra Bank?", "answer": "Connect IPS", "genre": "Current Affairs (Nepal)" }, { "question": "Which cyber security incident in 2023 targeted multiple Nepali banks and financial institutions?", "answer": "The 'Phishing' campaign targeting e-banking credentials", "genre": "Current Affairs (Nepal)" }, { "question": "What is Nepal's rank in the Global Cybersecurity Index 2023?", "answer": "Around 94th out of 194 countries", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali government service was fully digitized in 2024 to reduce corruption?", "answer": "Driving License issuance and renewal", "genre": "Current Affairs (Nepal)" }, { "question": "What was the theme of Nepal's National ICT Day 2024?", "answer": "Digital Transformation for Prosperous Nepal", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali e-commerce platform became the first to offer same-day delivery in Kathmandu Valley?", "answer": "Sastodeal", "genre": "Current Affairs (Nepal)" }, { "question": "What is the name of Nepal's satellite launched in 2022 for earth observation?", "answer": "NepaliSat-1", "genre": "Current Affairs (Nepal)" }, { "question": "Which programming language is most taught in Nepali CSIT curricula?", "answer": "Java", "genre": "Current Affairs (Nepal)" }, { "question": "What is Nepal's position in the Global Innovation Index 2023?", "answer": "108th out of 132 economies", "genre": "Current Affairs (Nepal)" }, { "question": "Which country became the world's most populous in 2023 according to UN estimates?", "answer": "India", "genre": "Current Affairs (International)" }, { "question": "What is the name of the AI Safety Summit hosted by the UK in 2023?", "answer": "Bletchley Park AI Safety Summit", "genre": "Current Affairs (International)" }, { "question": "Which country launched the 'Digital Public Infrastructure' initiative at the G20 summit in 2023?", "answer": "India", "genre": "Current Affairs (International)" }, { "question": "What was the main agenda of COP28 held in Dubai in 2023?", "answer": "First Global Stocktake and transition away from fossil fuels", "genre": "Current Affairs (International)" }, { "question": "Which country experienced devastating wildfires in 2023, killing over 100 people?", "answer": "Hawaii, USA (Lahaina wildfire)", "genre": "Current Affairs (International)" }, { "question": "What is the name of the peace agreement signed between Ethiopia and Tigray rebels in 2023?", "answer": "Pretoria Agreement", "genre": "Current Affairs (International)" }, { "question": "Which country's currency, the Argentine Peso, was replaced by the 'Argentine Nuevo Peso' in 2023?", "answer": "Argentina", "genre": "Current Affairs (International)" }, { "question": "What is the name of the global minimum tax agreement implemented by OECD in 2024?", "answer": "Pillar Two (Global Minimum Tax of 15%)", "genre": "Current Affairs (International)" }, { "question": "Which social media platform faced a major outage in 2023 affecting billions of users?", "answer": "Facebook, Instagram, and WhatsApp (Meta platforms)", "genre": "Current Affairs (International)" }, { "question": "What is the name of the EU's Digital Services Act that came into effect in 2024?", "answer": "Digital Services Act (DSA)", "genre": "Current Affairs (International)" }, { "question": "Which country launched the world's first central bank digital currency (CBDC) for cross-border payments?", "answer": "China (Digital Yuan)", "genre": "Current Affairs (International)" }, { "question": "What was the main focus of the World Economic Forum 2024 in Davos?", "answer": "Rebuilding Trust and Artificial Intelligence", "genre": "Current Affairs (International)" }, { "question": "Which company faced the largest data breach in 2023 affecting 1.5 billion users?", "answer": "DarkBeam (cybersecurity firm)", "genre": "Current Affairs (International)" }, { "question": "What is the name of the UK's Online Safety Bill passed in 2023?", "answer": "Online Safety Act", "genre": "Current Affairs (International)" }, { "question": "Which country experienced a major submarine cable cut in 2024 affecting internet connectivity?", "answer": "Several African countries (ACE and WACS cables)", "genre": "Current Affairs (International)" }, { "question": "Who won the 2024 Turing Award, often called the 'Nobel Prize of Computing'?", "answer": "Not announced yet (as of late 2024). 2023 winner was Bob Metcalfe for Ethernet.", "genre": "Important Awards" }, { "question": "Which Nepali filmmaker won the Best Documentary award at the 2024 Cannes Film Festival?", "answer": "No Nepali filmmaker won in 2024. Earlier, 'The Black Hen' (2015) was Nepal's official entry.", "genre": "Important Awards" }, { "question": "Who won the 2024 Nobel Prize in Medicine for mRNA vaccine technology?", "answer": "Katalin Karikó and Drew Weissman", "genre": "Important Awards" }, { "question": "Which Indian author won the 2023 International Booker Prize?", "answer": "Geetanjali Shree for 'Tomb of Sand'", "genre": "Important Awards" }, { "question": "Who won the 2024 Grammy Award for Album of the Year?", "answer": "Taylor Swift for 'Midnights'", "genre": "Important Awards" }, { "question": "Which scientist won the 2024 Breakthrough Prize in Life Sciences?", "answer": "Demis Hassabis and John Jumper for AlphaFold", "genre": "Important Awards" }, { "question": "Who won the 2024 Pritzker Architecture Prize?", "answer": "Riken Yamamoto", "genre": "Important Awards" }, { "question": "Which country won the 2024 Thomas Cup (Men's Badminton Team Championship)?", "answer": "China", "genre": "Sports" }, { "question": "Who won the 2024 T20 Cricket World Cup?", "answer": "Not held yet (scheduled for 2024). 2022 winner was England.", "genre": "Sports" }, { "question": "Which Nepali cricketer scored the fastest century in ODI cricket for Nepal?", "answer": "Kushal Malla (in 34 balls vs Mongolia)", "genre": "Sports (Nepal)" }, { "question": "Who won the 2024 Ballon d'Or Féminin (Women's Ballon d'Or)?", "answer": "Aitana Bonmatí", "genre": "Sports" }, { "question": "Which country hosted the 2024 Summer Olympics?", "answer": "France (Paris)", "genre": "Sports" }, { "question": "Who won the 2024 NBA Championship?", "answer": "Denver Nuggets (2023). 2024 not completed yet.", "genre": "Sports" }, { "question": "Which Nepali athlete won a gold medal in the 2023 Asian Games?", "answer": "None in 2023. Earlier, Taekwondo in 2018.", "genre": "Sports (Nepal)" }, { "question": "Who won the 2024 ICC Women's T20 World Cup?", "answer": "Australia", "genre": "Sports" }, { "question": "Which country won the 2024 Rugby World Cup?", "answer": "South Africa (2023). Next is 2027.", "genre": "Sports" }, { "question": "What does 'DevOps' stand for in software engineering?", "answer": "Development and Operations", "genre": "Science & Technology (CSIT)" }, { "question": "Which sorting algorithm has the worst-case time complexity of O(n²)?", "answer": "Bubble Sort, Selection Sort, Insertion Sort", "genre": "Science & Technology (CSIT)" }, { "question": "What is the purpose of the 'git clone' command?", "answer": "To create a copy of a remote repository on your local machine", "genre": "Science & Technology (CSIT)" }, { "question": "Which layer of the OSI model is responsible for logical addressing?", "answer": "Network Layer (Layer 3)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Docker' primarily used for?", "answer": "Containerization of applications", "genre": "Science & Technology (CSIT)" }, { "question": "Which database model stores data in tables with rows and columns?", "answer": "Relational Database Model", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'CSS' stand for in web development?", "answer": "Cascading Style Sheets", "genre": "Science & Technology (CSIT)" }, { "question": "Which programming language is known for its use in data science and machine learning?", "answer": "Python", "genre": "Science & Technology (CSIT)" }, { "question": "What is the time complexity of binary search?", "answer": "O(log n)", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for secure shell access to remote servers?", "answer": "SSH (Secure Shell)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Big O Notation' used for?", "answer": "Describing the performance or complexity of an algorithm", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure is used for implementing recursion?", "answer": "Stack", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'API Gateway' do in microservices architecture?", "answer": "Acts as a single entry point for all client requests and routes them to appropriate services", "genre": "Science & Technology (CSIT)" }, { "question": "Which type of testing checks individual components of software?", "answer": "Unit Testing", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Kubernetes' used for?", "answer": "Container orchestration (managing containerized applications)", "genre": "Science & Technology (CSIT)" }, { "question": "Which cryptographic algorithm is used in Bitcoin?", "answer": "SHA-256", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'REST' stand for in API design?", "answer": "Representational State Transfer", "genre": "Science & Technology (CSIT)" }, { "question": "Which database is known as a NoSQL document database?", "answer": "MongoDB", "genre": "Science & Technology (CSIT)" }, { "question": "What is the purpose of 'Load Balancer' in networking?", "answer": "Distributes network traffic across multiple servers to ensure no single server is overwhelmed", "genre": "Science & Technology (CSIT)" }, { "question": "Which programming paradigm is Haskell based on?", "answer": "Functional Programming", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'VPN' stand for?", "answer": "Virtual Private Network", "genre": "Science & Technology (CSIT)" }, { "question": "Which algorithm is used for shortest path finding in graphs?", "answer": "Dijkstra's Algorithm", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'CI/CD' in software development?", "answer": "Continuous Integration and Continuous Deployment/Delivery", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for email transmission?", "answer": "SMTP (Simple Mail Transfer Protocol)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Blockchain' technology primarily used for?", "answer": "Creating decentralized, immutable ledgers for transactions", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure provides O(1) time complexity for search, insert, and delete?", "answer": "Hash Table", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'XML' stand for?", "answer": "eXtensible Markup Language", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the React library?", "answer": "Facebook (Meta)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Machine Learning'?", "answer": "A subset of AI that enables systems to learn and improve from experience without explicit programming", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for dynamic IP address assignment?", "answer": "DHCP (Dynamic Host Configuration Protocol)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Agile Methodology' in software development?", "answer": "An iterative approach to project management and software development", "genre": "Science & Technology (CSIT)" }, { "question": "Which database constraint ensures all values in a column are unique?", "answer": "UNIQUE constraint", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'HTTP 404' status code mean?", "answer": "Not Found", "genre": "Science & Technology (CSIT)" }, { "question": "Which algorithm is used for page replacement in operating systems?", "answer": "LRU (Least Recently Used)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Virtual Memory'?", "answer": "A memory management technique that uses disk space as an extension of RAM", "genre": "Science & Technology (CSIT)" }, { "question": "Which programming language is used for Android app development?", "answer": "Kotlin (or Java)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'SQL Injection' refer to?", "answer": "A code injection technique used to attack data-driven applications", "genre": "Science & Technology (CSIT)" }, { "question": "Which algorithm is used for public-key encryption?", "answer": "RSA (Rivest-Shamir-Adleman)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Cloud Computing'?", "answer": "Delivery of computing services over the internet ('the cloud')", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure is used for implementing priority queue?", "answer": "Heap", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'DOM' stand for in web development?", "answer": "Document Object Model", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the TypeScript programming language?", "answer": "Microsoft", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Neural Network' in AI?", "answer": "A series of algorithms that mimic the operations of a human brain", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for file transfer?", "answer": "FTP (File Transfer Protocol)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'JSON' stand for?", "answer": "JavaScript Object Notation", "genre": "Science & Technology (CSIT)" }, { "question": "Which search algorithm requires the data to be sorted?", "answer": "Binary Search", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Cryptocurrency'?", "answer": "A digital or virtual currency that uses cryptography for security", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the Python programming language?", "answer": "Guido van Rossum (individual)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'URL' stand for?", "answer": "Uniform Resource Locator", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure uses 'key-value' pairs?", "answer": "Dictionary (or Map or Hash Table)", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Artificial Intelligence'?", "answer": "The simulation of human intelligence in machines", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for voice over IP (VoIP)?", "answer": "SIP (Session Initiation Protocol)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'CPU' stand for?", "answer": "Central Processing Unit", "genre": "Science & Technology (CSIT)" }, { "question": "Which sorting algorithm is known for its divide-and-conquer approach?", "answer": "Merge Sort", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Git'?", "answer": "A distributed version control system", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the Java programming language?", "answer": "Sun Microsystems (now owned by Oracle)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'HTML' stand for?", "answer": "HyperText Markup Language", "genre": "Science & Technology (CSIT)" }, { "question": "Which database operation is used to retrieve data?", "answer": "SELECT", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Deep Learning'?", "answer": "A subset of machine learning using neural networks with multiple layers", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for network time synchronization?", "answer": "NTP (Network Time Protocol)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'RAM' stand for?", "answer": "Random Access Memory", "genre": "Science & Technology (CSIT)" }, { "question": "Which algorithm is used for minimum spanning tree?", "answer": "Prim's or Kruskal's Algorithm", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Object-Oriented Programming'?", "answer": "A programming paradigm based on objects containing data and methods", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the C++ programming language?", "answer": "Bjarne Stroustrup (individual)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'SQL' stand for?", "answer": "Structured Query Language", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure is FIFO (First-In-First-Out)?", "answer": "Queue", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Internet of Things'?", "answer": "Network of physical objects embedded with sensors and software", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for secure web browsing?", "answer": "HTTPS (HTTP Secure)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'API' stand for?", "answer": "Application Programming Interface", "genre": "Science & Technology (CSIT)" }, { "question": "Which sorting algorithm has best-case time complexity O(n)?", "answer": "Insertion Sort", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Big Data'?", "answer": "Extremely large data sets that may be analyzed computationally", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the JavaScript programming language?", "answer": "Brendan Eich (while at Netscape)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'DNS' stand for?", "answer": "Domain Name System", "genre": "Science & Technology (CSIT)" }, { "question": "Which database operation is used to modify data?", "answer": "UPDATE", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Natural Language Processing'?", "answer": "AI field focused on interaction between computers and human language", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for router communication?", "answer": "BGP (Border Gateway Protocol)", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'GPU' stand for?", "answer": "Graphics Processing Unit", "genre": "Science & Technology (CSIT)" }, { "question": "Which algorithm is used for pattern searching in strings?", "answer": "KMP (Knuth-Morris-Pratt) Algorithm", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Software Development Life Cycle'?", "answer": "Process for planning, creating, testing, deploying software", "genre": "Science & Technology (CSIT)" }, { "question": "Which company developed the C# programming language?", "answer": "Microsoft", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'CSS' do in web development?", "answer": "Describes how HTML elements are displayed", "genre": "Science & Technology (CSIT)" }, { "question": "Which data structure is LIFO (Last-In-First-Out)?", "answer": "Stack", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Cybersecurity'?", "answer": "Protection of internet-connected systems from cyber threats", "genre": "Science & Technology (CSIT)" }, { "question": "Which protocol is used for email retrieval?", "answer": "POP3 or IMAP", "genre": "Science & Technology (CSIT)" }, { "question": "What does 'IDE' stand for?", "answer": "Integrated Development Environment", "genre": "Science & Technology (CSIT)" }, { "question": "Which sorting algorithm is known as 'exchange sort'?", "answer": "Bubble Sort", "genre": "Science & Technology (CSIT)" }, { "question": "What is 'Cloud Storage'?", "answer": "Model of computer data storage in digital logical pools", "genre": "Science & Technology (CSIT)" }, { "question": "Who invented the World Wide Web?", "answer": "Tim Berners-Lee", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first computer mouse?", "answer": "Xerox PARC", "genre": "Inventions & Discoveries" }, { "question": "What year was Python programming language created?", "answer": "1991", "genre": "Inventions & Discoveries" }, { "question": "Who is considered the father of computer science?", "answer": "Alan Turing", "genre": "Inventions & Discoveries" }, { "question": "What was the first electronic general-purpose computer?", "answer": "ENIAC", "genre": "Inventions & Discoveries" }, { "question": "Which year was Java programming language released?", "answer": "1995", "genre": "Inventions & Discoveries" }, { "question": "Who invented the C programming language?", "answer": "Dennis Ritchie", "genre": "Inventions & Discoveries" }, { "question": "What was the first commercial microprocessor?", "answer": "Intel 4004", "genre": "Inventions & Discoveries" }, { "question": "Which company developed the first smartphone?", "answer": "IBM (Simon Personal Communicator)", "genre": "Inventions & Discoveries" }, { "question": "What year was the internet (ARPANET) created?", "answer": "1969", "genre": "Inventions & Discoveries" }, { "question": "Who invented the transistor?", "answer": "John Bardeen, Walter Brattain, William Shockley", "genre": "Inventions & Discoveries" }, { "question": "What was the first programming language?", "answer": "FORTRAN or Plankalkül", "genre": "Inventions & Discoveries" }, { "question": "Which company created the first graphical web browser?", "answer": "NCSA Mosaic", "genre": "Inventions & Discoveries" }, { "question": "What year was the first iPhone released?", "answer": "2007", "genre": "Inventions & Discoveries" }, { "question": "Who invented Linux operating system?", "answer": "Linus Torvalds", "genre": "Inventions & Discoveries" }, { "question": "What was the first video game?", "answer": "Tennis for Two or Spacewar!", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the USB?", "answer": "Intel", "genre": "Inventions & Discoveries" }, { "question": "What year was Wi-Fi invented?", "answer": "1997 (802.11 protocol)", "genre": "Inventions & Discoveries" }, { "question": "Who invented the printing press?", "answer": "Johannes Gutenberg", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer virus?", "answer": "Creeper", "genre": "Inventions & Discoveries" }, { "question": "Which company created the first SSD?", "answer": "StorageTek", "genre": "Inventions & Discoveries" }, { "question": "What year was Bluetooth invented?", "answer": "1994", "genre": "Inventions & Discoveries" }, { "question": "Who invented the telephone?", "answer": "Alexander Graham Bell", "genre": "Inventions & Discoveries" }, { "question": "What was the first search engine?", "answer": "Archie", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the hard disk drive?", "answer": "IBM", "genre": "Inventions & Discoveries" }, { "question": "What year was the first email sent?", "answer": "1971", "genre": "Inventions & Discoveries" }, { "question": "Who invented the light bulb?", "answer": "Thomas Edison", "genre": "Inventions & Discoveries" }, { "question": "What was the first social media platform?", "answer": "Six Degrees", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the QR code?", "answer": "Denso Wave", "genre": "Inventions & Discoveries" }, { "question": "What year was the first website created?", "answer": "1991", "genre": "Inventions & Discoveries" }, { "question": "Who invented the periodic table?", "answer": "Dmitri Mendeleev", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer with a GUI?", "answer": "Xerox Alto", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the touchscreen?", "answer": "CERN or IBM", "genre": "Inventions & Discoveries" }, { "question": "What year was the first text message sent?", "answer": "1992", "genre": "Inventions & Discoveries" }, { "question": "Who invented the telescope?", "answer": "Hans Lippershey", "genre": "Inventions & Discoveries" }, { "question": "What was the first digital camera?", "answer": "Kodak DCS 100", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the barcode?", "answer": "IBM", "genre": "Inventions & Discoveries" }, { "question": "What year was GPS made available for civilian use?", "answer": "1983", "genre": "Inventions & Discoveries" }, { "question": "Who invented penicillin?", "answer": "Alexander Fleming", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer animation?", "answer": "Hummingbird (1967)", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first laptop?", "answer": "IBM (IBM 5100)", "genre": "Inventions & Discoveries" }, { "question": "What year was the first video uploaded to YouTube?", "answer": "2005", "genre": "Inventions & Discoveries" }, { "question": "Who invented the steam engine?", "answer": "James Watt", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer network?", "answer": "ARPANET", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first digital watch?", "answer": "Hamilton Watch Company", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer game invented?", "answer": "1962 (Spacewar!)", "genre": "Inventions & Discoveries" }, { "question": "Who invented the radio?", "answer": "Guglielmo Marconi", "genre": "Inventions & Discoveries" }, { "question": "What was the first operating system?", "answer": "GM-NAA I/O", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first calculator?", "answer": "Texas Instruments", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer sold commercially?", "answer": "1951 (UNIVAC I)", "genre": "Inventions & Discoveries" }, { "question": "Who invented the airplane?", "answer": "Wright Brothers", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer language for business?", "answer": "COBOL", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first web server?", "answer": "CERN", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer bug found?", "answer": "1947", "genre": "Inventions & Discoveries" }, { "question": "Who invented the microscope?", "answer": "Zacharias Janssen", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer with a hard drive?", "answer": "IBM 305 RAMAC", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first digital computer?", "answer": "ABC Computer or ENIAC team", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer chess program?", "answer": "1951", "genre": "Inventions & Discoveries" }, { "question": "Who invented the television?", "answer": "John Logie Baird", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer graphics software?", "answer": "Sketchpad", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first spreadsheet software?", "answer": "VisiCalc", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer conference?", "answer": "1970", "genre": "Inventions & Discoveries" }, { "question": "Who invented the bicycle?", "answer": "Karl von Drais", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer music?", "answer": "IBM 7094 playing 'Daisy Bell'", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first digital assistant?", "answer": "Apple (Siri)", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer art created?", "answer": "1960s", "genre": "Inventions & Discoveries" }, { "question": "Who invented the battery?", "answer": "Alessandro Volta", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer with a color display?", "answer": "IBM 2250", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first webcam?", "answer": "Cambridge University", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer magazine published?", "answer": "1974", "genre": "Inventions & Discoveries" }, { "question": "Who invented the printing calculator?", "answer": "Burroughs", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer with a mouse?", "answer": "Xerox Alto", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first smartphone OS?", "answer": "Palm", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer science degree offered?", "answer": "1962", "genre": "Inventions & Discoveries" }, { "question": "Who invented the first computer algorithm?", "answer": "Ada Lovelace", "genre": "Inventions & Discoveries" }, { "question": "What was the first computer with a GUI for consumers?", "answer": "Apple Macintosh", "genre": "Inventions & Discoveries" }, { "question": "Which company invented the first computer chip?", "answer": "Texas Instruments or Intel", "genre": "Inventions & Discoveries" }, { "question": "What year was the first computer patent granted?", "answer": "1964", "genre": "Inventions & Discoveries" }, { "question": "Who invented the first computer network protocol?", "answer": "Vinton Cerf and Bob Kahn (TCP/IP)", "genre": "Inventions & Discoveries" }, { "question": "What is the main cause of COVID-19?", "answer": "SARS-CoV-2 virus", "genre": "Health" }, { "question": "Which vitamin is produced when skin is exposed to sunlight?", "answer": "Vitamin D", "genre": "Health" }, { "question": "What is the normal human body temperature in Celsius?", "answer": "37°C", "genre": "Health" }, { "question": "Which organ pumps blood throughout the body?", "answer": "Heart", "genre": "Health" }, { "question": "What is the largest organ of the human body?", "answer": "Skin", "genre": "Health" }, { "question": "Which disease is caused by deficiency of Vitamin C?", "answer": "Scurvy", "genre": "Health" }, { "question": "What is the medical term for high blood pressure?", "answer": "Hypertension", "genre": "Health" }, { "question": "Which gland is known as the 'master gland'?", "answer": "Pituitary gland", "genre": "Health" }, { "question": "What is the normal human heart rate per minute?", "answer": "60-100 beats", "genre": "Health" }, { "question": "Which mineral is essential for making hemoglobin?", "answer": "Iron", "genre": "Health" }, { "question": "What disease is caused by the deficiency of insulin?", "answer": "Diabetes", "genre": "Health" }, { "question": "Which part of the brain controls balance?", "answer": "Cerebellum", "genre": "Health" }, { "question": "What is the study of cancer called?", "answer": "Oncology", "genre": "Health" }, { "question": "Which blood type is known as the universal donor?", "answer": "O negative", "genre": "Health" }, { "question": "What is the average human breathing rate per minute?", "answer": "12-20 breaths", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin D?", "answer": "Rickets", "genre": "Health" }, { "question": "What is the medical term for a heart attack?", "answer": "Myocardial infarction", "genre": "Health" }, { "question": "Which organ produces bile?", "answer": "Liver", "genre": "Health" }, { "question": "What is the normal human blood pH?", "answer": "7.35-7.45", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of iodine?", "answer": "Goiter", "genre": "Health" }, { "question": "What is the smallest bone in the human body?", "answer": "Stapes (in ear)", "genre": "Health" }, { "question": "Which vitamin is essential for blood clotting?", "answer": "Vitamin K", "genre": "Health" }, { "question": "What is the medical term for low blood pressure?", "answer": "Hypotension", "genre": "Health" }, { "question": "Which organ filters blood and produces urine?", "answer": "Kidneys", "genre": "Health" }, { "question": "What is the longest bone in the human body?", "answer": "Femur (thigh bone)", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of calcium?", "answer": "Osteoporosis", "genre": "Health" }, { "question": "What is the medical term for difficulty breathing?", "answer": "Dyspnea", "genre": "Health" }, { "question": "Which gland produces insulin?", "answer": "Pancreas", "genre": "Health" }, { "question": "What is the normal human blood sugar level (fasting)?", "answer": "70-100 mg/dL", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B1?", "answer": "Beriberi", "genre": "Health" }, { "question": "What is the medical term for inflammation of the liver?", "answer": "Hepatitis", "genre": "Health" }, { "question": "Which organ is affected by tuberculosis?", "answer": "Lungs", "genre": "Health" }, { "question": "What is the medical term for a stroke?", "answer": "Cerebrovascular accident", "genre": "Health" }, { "question": "Which vitamin is essential for good vision?", "answer": "Vitamin A", "genre": "Health" }, { "question": "What is the medical term for cancer of the blood?", "answer": "Leukemia", "genre": "Health" }, { "question": "Which organ is affected by malaria?", "answer": "Liver and red blood cells", "genre": "Health" }, { "question": "What is the medical term for high cholesterol?", "answer": "Hypercholesterolemia", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B12?", "answer": "Anemia", "genre": "Health" }, { "question": "What is the medical term for knee cap?", "answer": "Patella", "genre": "Health" }, { "question": "Which organ is affected by jaundice?", "answer": "Liver", "genre": "Health" }, { "question": "What is the medical term for whooping cough?", "answer": "Pertussis", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of protein?", "answer": "Kwashiorkor", "genre": "Health" }, { "question": "What is the medical term for breastbone?", "answer": "Sternum", "genre": "Health" }, { "question": "Which organ is affected by pneumonia?", "answer": "Lungs", "genre": "Health" }, { "question": "What is the medical term for low blood sugar?", "answer": "Hypoglycemia", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B3?", "answer": "Pellagra", "genre": "Health" }, { "question": "What is the medical term for collarbone?", "answer": "Clavicle", "genre": "Health" }, { "question": "Which organ is affected by cirrhosis?", "answer": "Liver", "genre": "Health" }, { "question": "What is the medical term for shoulder blade?", "answer": "Scapula", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B2?", "answer": "Ariboflavinosis", "genre": "Health" }, { "question": "What is the medical term for hip bone?", "answer": "Pelvis", "genre": "Health" }, { "question": "Which organ is affected by glaucoma?", "answer": "Eyes", "genre": "Health" }, { "question": "What is the medical term for windpipe?", "answer": "Trachea", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B6?", "answer": "Anemia and neurological issues", "genre": "Health" }, { "question": "What is the medical term for voice box?", "answer": "Larynx", "genre": "Health" }, { "question": "Which organ is affected by arthritis?", "answer": "Joints", "genre": "Health" }, { "question": "What is the medical term for food pipe?", "answer": "Esophagus", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B9?", "answer": "Anemia (Folic acid deficiency)", "genre": "Health" }, { "question": "What is the medical term for thigh bone?", "answer": "Femur", "genre": "Health" }, { "question": "Which organ is affected by asthma?", "answer": "Lungs", "genre": "Health" }, { "question": "What is the medical term for shin bone?", "answer": "Tibia", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B5?", "answer": "Paresthesia", "genre": "Health" }, { "question": "What is the medical term for calf bone?", "answer": "Fibula", "genre": "Health" }, { "question": "Which organ is affected by epilepsy?", "answer": "Brain", "genre": "Health" }, { "question": "What is the medical term for jaw bone?", "answer": "Mandible", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin B7?", "answer": "Dermatitis and hair loss", "genre": "Health" }, { "question": "What is the medical term for skull?", "answer": "Cranium", "genre": "Health" }, { "question": "Which organ is affected by migraine?", "answer": "Brain", "genre": "Health" }, { "question": "What is the medical term for backbone?", "answer": "Spine or vertebral column", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of Vitamin E?", "answer": "Neurological problems", "genre": "Health" }, { "question": "What is the medical term for rib cage?", "answer": "Thorax", "genre": "Health" }, { "question": "Which organ is affected by Alzheimer's?", "answer": "Brain", "genre": "Health" }, { "question": "What is the medical term for wrist bones?", "answer": "Carpals", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of zinc?", "answer": "Growth retardation", "genre": "Health" }, { "question": "What is the medical term for ankle bones?", "answer": "Tarsals", "genre": "Health" }, { "question": "Which organ is affected by Parkinson's?", "answer": "Brain", "genre": "Health" }, { "question": "What is the medical term for finger bones?", "answer": "Phalanges", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of magnesium?", "answer": "Muscle cramps", "genre": "Health" }, { "question": "What is the medical term for toe bones?", "answer": "Phalanges", "genre": "Health" }, { "question": "Which organ is affected by hepatitis?", "answer": "Liver", "genre": "Health" }, { "question": "What is the medical term for arm bone?", "answer": "Humerus", "genre": "Health" }, { "question": "Which disease is caused by the deficiency of potassium?", "answer": "Hypokalemia", "genre": "Health" }, { "question": "What is the medical term for forearm bones?", "answer": "Radius and ulna", "genre": "Health" }, { "question": "Which organ is affected by gastritis?", "answer": "Stomach", "genre": "Health" }, { "question": "What is the medical term for kneecap?", "answer": "Patella", "genre": "Health" }, { "question": "Which planet is known as the Red Planet?", "answer": "Mars", "genre": "Space" }, { "question": "What is the largest planet in our solar system?", "answer": "Jupiter", "genre": "Space" }, { "question": "Which planet has the most moons?", "answer": "Saturn", "genre": "Space" }, { "question": "What is the closest star to Earth?", "answer": "Sun", "genre": "Space" }, { "question": "Which planet is known for its rings?", "answer": "Saturn", "genre": "Space" }, { "question": "What is the smallest planet in our solar system?", "answer": "Mercury", "genre": "Space" }, { "question": "Which planet is known as the Morning Star?", "answer": "Venus", "genre": "Space" }, { "question": "What is the hottest planet in our solar system?", "answer": "Venus", "genre": "Space" }, { "question": "Which planet has the Great Red Spot?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of our galaxy?", "answer": "Milky Way", "genre": "Space" }, { "question": "Which planet is known as the Blue Planet?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first artificial satellite?", "answer": "Sputnik 1", "genre": "Space" }, { "question": "Who was the first human in space?", "answer": "Yuri Gagarin", "genre": "Space" }, { "question": "Who was the first woman in space?", "answer": "Valentina Tereshkova", "genre": "Space" }, { "question": "Which country first landed on the moon?", "answer": "United States (Apollo 11)", "genre": "Space" }, { "question": "Who was the first person to walk on the moon?", "answer": "Neil Armstrong", "genre": "Space" }, { "question": "What is the name of NASA's Mars rover that landed in 2021?", "answer": "Perseverance", "genre": "Space" }, { "question": "Which telescope was launched in 2021 to replace Hubble?", "answer": "James Webb Space Telescope", "genre": "Space" }, { "question": "What is the name of the black hole photographed in 2019?", "answer": "M87*", "genre": "Space" }, { "question": "Which planet has the most volcanic activity?", "answer": "Venus", "genre": "Space" }, { "question": "What is the name of Saturn's largest moon?", "answer": "Titan", "genre": "Space" }, { "question": "Which planet rotates on its side?", "answer": "Uranus", "genre": "Space" }, { "question": "What is the name of Jupiter's largest moon?", "answer": "Ganymede", "genre": "Space" }, { "question": "Which planet has the shortest day?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first private company to send astronauts to ISS?", "answer": "SpaceX", "genre": "Space" }, { "question": "Which country's space agency is called ISRO?", "answer": "India", "genre": "Space" }, { "question": "What is the name of China's space station?", "answer": "Tiangong", "genre": "Space" }, { "question": "Which planet has the longest year?", "answer": "Neptune", "genre": "Space" }, { "question": "What is the name of the first reusable spacecraft?", "answer": "Space Shuttle", "genre": "Space" }, { "question": "Which planet is known for its extreme winds?", "answer": "Neptune", "genre": "Space" }, { "question": "What is the name of the first dog in space?", "answer": "Laika", "genre": "Space" }, { "question": "Which planet has the most Earth-like conditions?", "answer": "Mars", "genre": "Space" }, { "question": "What is the name of the first space tourist?", "answer": "Dennis Tito", "genre": "Space" }, { "question": "Which planet has the most dense atmosphere?", "answer": "Venus", "genre": "Space" }, { "question": "What is the name of the first commercial spaceflight company?", "answer": "SpaceX", "genre": "Space" }, { "question": "Which planet has the most visible rings?", "answer": "Saturn", "genre": "Space" }, { "question": "What is the name of the first space station?", "answer": "Salyut 1", "genre": "Space" }, { "question": "Which planet has the most moons discovered in 2023?", "answer": "Saturn", "genre": "Space" }, { "question": "What is the name of NASA's mission to return humans to the moon?", "answer": "Artemis", "genre": "Space" }, { "question": "Which planet has the most elliptical orbit?", "answer": "Mercury", "genre": "Space" }, { "question": "What is the name of the first successful Mars helicopter?", "answer": "Ingenuity", "genre": "Space" }, { "question": "Which planet has the most lightning?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first interstellar object detected?", "answer": "Oumuamua", "genre": "Space" }, { "question": "Which planet has the most water?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first commercial satellite?", "answer": "Telstar 1", "genre": "Space" }, { "question": "Which planet has the most methane in its atmosphere?", "answer": "Uranus", "genre": "Space" }, { "question": "What is the name of the first GPS satellite?", "answer": "Navstar 1", "genre": "Space" }, { "question": "Which planet has the most carbon dioxide?", "answer": "Venus", "genre": "Space" }, { "question": "What is the name of the first weather satellite?", "answer": "TIROS-1", "genre": "Space" }, { "question": "Which planet has the most nitrogen in its atmosphere?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first communication satellite?", "answer": "Echo 1", "genre": "Space" }, { "question": "Which planet has the most oxygen in its atmosphere?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first solar-powered satellite?", "answer": "Vanguard 1", "genre": "Space" }, { "question": "Which planet has the most hydrogen in its atmosphere?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to orbit another planet?", "answer": "Mariner 9 (Mars)", "genre": "Space" }, { "question": "Which planet has the most helium in its atmosphere?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to land on another planet?", "answer": "Mars 3 (Mars)", "genre": "Space" }, { "question": "Which planet has the most argon in its atmosphere?", "answer": "Mars", "genre": "Space" }, { "question": "What is the name of the first satellite to orbit the sun?", "answer": "Pioneer 5", "genre": "Space" }, { "question": "Which planet has the most neon in its atmosphere?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to photograph Earth from space?", "answer": "Explorer 6", "genre": "Space" }, { "question": "Which planet has the most krypton in its atmosphere?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first satellite to detect cosmic rays?", "answer": "Sputnik 2", "genre": "Space" }, { "question": "Which planet has the most xenon in its atmosphere?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first satellite to study Earth's magnetic field?", "answer": "Explorer 1", "genre": "Space" }, { "question": "Which planet has the most radon in its atmosphere?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first satellite to measure Earth's radiation?", "answer": "Explorer 7", "genre": "Space" }, { "question": "Which planet has the most ozone in its atmosphere?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first satellite to map Earth's gravity?", "answer": "GRACE", "genre": "Space" }, { "question": "Which planet has the most water vapor in its atmosphere?", "answer": "Earth", "genre": "Space" }, { "question": "What is the name of the first satellite to study solar wind?", "answer": "Mariner 2", "genre": "Space" }, { "question": "Which planet has the most clouds?", "answer": "Venus", "genre": "Space" }, { "question": "What is the name of the first satellite to study cosmic microwave background?", "answer": "COBE", "genre": "Space" }, { "question": "Which planet has the most dust storms?", "answer": "Mars", "genre": "Space" }, { "question": "What is the name of the first satellite to study dark matter?", "answer": "Fermi Gamma-ray Space Telescope", "genre": "Space" }, { "question": "Which planet has the most auroras?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to study exoplanets?", "answer": "Kepler", "genre": "Space" }, { "question": "Which planet has the most volcanic moons?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to study black holes?", "answer": "Chandra X-ray Observatory", "genre": "Space" }, { "question": "Which planet has the most icy moons?", "answer": "Saturn", "genre": "Space" }, { "question": "What is the name of the first satellite to study neutron stars?", "answer": "Rossi X-ray Timing Explorer", "genre": "Space" }, { "question": "Which planet has the most rocky moons?", "answer": "Mars", "genre": "Space" }, { "question": "What is the name of the first satellite to study gamma-ray bursts?", "answer": "Compton Gamma Ray Observatory", "genre": "Space" }, { "question": "Which planet has the most irregular moons?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to study solar flares?", "answer": "Solar Maximum Mission", "genre": "Space" }, { "question": "Which planet has the most trojan asteroids?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to study magnetars?", "answer": "Swift", "genre": "Space" }, { "question": "Which planet has the most centaurs?", "answer": "Jupiter", "genre": "Space" }, { "question": "What is the name of the first satellite to study pulsars?", "answer": "Uhuru", "genre": "Space" }, { "question": "Which planet has the most trans-neptunian objects?", "answer": "Neptune", "genre": "Space" }, { "question": "What is the name of the first satellite to study quasars?", "answer": "Hubble Space Telescope", "genre": "Space" }, { "question": "Which planet has the most kuiper belt objects?", "answer": "Neptune", "genre": "Space" }, { "question": "What is the name of the first satellite to study supernovae?", "answer": "Einstein Observatory", "genre": "Space" }, { "question": "Which planet has the most oort cloud objects?", "answer": "All planets share the Oort cloud", "genre": "Space" }, { "question": "What is the name of the first satellite to study dark energy?", "answer": "Wilkinson Microwave Anisotropy Probe", "genre": "Space" }, { "question": "Which planet has the most interstellar objects?", "answer": "All planets encounter them rarely", "genre": "Space" }, { "question": "What is the name of the first satellite to study gravitational waves?", "answer": "LIGO (ground-based) or LISA Pathfinder", "genre": "Space" }, { "question": "Which Nepali scientist won the 'Yuwa Vigyan Puraskar' (Young Scientist Award) in 2023 from NAST?", "answer": "Dr. Prabin Adhikari", "genre": "Awards (Nepal)" }, { "question": "Who received the 'Madan Puraskar' for literature in 2023?", "answer": "Buddhi Sagar Chudal for 'Bhanu Bhakta Ramayana'", "genre": "Awards (Nepal)" }, { "question": "Which Nepali environmentalist won the 'SEED Award' in 2024 for sustainable development?", "answer": "Sanu Babu Sunar", "genre": "Awards (Nepal)" }, { "question": "Who won the 'Jagadamba Shree Award' in 2023 for contributions to Nepali arts?", "answer": "Satya Mohan Joshi", "genre": "Awards (Nepal)" }, { "question": "Which Nepali researcher received the 'INSA Young Scientist Medal' in 2024?", "answer": "Dr. Suresh Kumar Dhungel", "genre": "Awards (Nepal)" }, { "question": "Who was awarded the 'Gorkha Dakshin Bahu' medal in 2024?", "answer": "Shree Krishna Shrestha", "genre": "Awards (Nepal)" }, { "question": "Which Nepali journalist received the 'Best Investigative Journalism Award' in 2023?", "answer": "Kundan Aryal", "genre": "Awards (Nepal)" }, { "question": "Who won the 'Nepa~laya Music Award' for Best Singer in 2024?", "answer": "Sajjan Raj Vaidya", "genre": "Awards (Nepal)" }, { "question": "Which Nepali filmmaker received the 'Best Director Award' at Nepal International Film Festival 2023?", "answer": "Min Bahadur Bham", "genre": "Awards (Nepal)" }, { "question": "Who received the 'Lifetime Achievement Award' at the National Film Awards 2023?", "answer": "Tulsi Ghimire", "genre": "Awards (Nepal)" }, { "question": "Which Nepali entrepreneur won the 'Forbes 30 Under 30 Asia' award in 2024?", "answer": "Aayushi KC", "genre": "Awards (Nepal)" }, { "question": "Who received the 'NRNA Youth Excellence Award' in 2023?", "answer": "Anil Chitrakar", "genre": "Awards (Nepal)" }, { "question": "Which Nepali scientist won the 'TWAS Young Scientist Award' in 2024?", "answer": "Dr. Resham Bahadur Thapa", "genre": "Awards (Nepal)" }, { "question": "Who was awarded the 'Best Nepali IT Entrepreneur' award in 2023?", "answer": "Ravi Singh", "genre": "Awards (Nepal)" }, { "question": "Which Nepali environmental activist received the 'Green Talents Award' in 2024?", "answer": "Prajwal Shrestha", "genre": "Awards (Nepal)" }, { "question": "Who won the 'Nepal Literature Festival Award' for Best Book in 2023?", "answer": "Shanta Chaudhary for 'Dui Rupaiyan'", "genre": "Awards (Nepal)" }, { "question": "Which Nepali architect received the 'National Design Award' in 2024?", "answer": "Sangeeta Thapa", "genre": "Awards (Nepal)" }, { "question": "Who was awarded the 'Best Social Entrepreneur Award' in Nepal in 2023?", "answer": "Mahabir Pun", "genre": "Awards (Nepal)" }, { "question": "Which Nepali AI researcher won the 'Google Research Scholar Award' in 2024?", "answer": "Dr. Niraj Niraula", "genre": "Awards (Nepal)" }, { "question": "Who received the 'Nepal Academy Award' for literature in 2023?", "answer": "Kumar Nagarkoti", "genre": "Awards (Nepal)" }, { "question": "Which Nepali cybersecurity expert won the 'Best White Hat Hacker' award in 2024?", "answer": "Santosh Pandey", "genre": "Awards (Nepal)" }, { "question": "Who was awarded the 'Youth Innovation Award' by UNDP Nepal in 2023?", "answer": "Sabita Banskota", "genre": "Awards (Nepal)" }, { "question": "Which Nepali data scientist won the 'Kaggle Competition Award' in 2024?", "answer": "Rajesh K.C.", "genre": "Awards (Nepal)" }, { "question": "Who received the 'Best Female Entrepreneur Award' in Nepal's tech sector in 2023?", "answer": "Sulav Poudel", "genre": "Awards (Nepal)" }, { "question": "Which Nepali researcher won the 'Elsevier Young Scientist Award' in 2024?", "answer": "Dr. Anil Shrestha", "genre": "Awards (Nepal)" }, { "question": "Who was awarded the 'National ICT Award' for digital innovation in 2023?", "answer": "Bibek Koirala", "genre": "Awards (Nepal)" }, { "question": "Which Nepali AI startup won the 'National Innovation Award' in 2024?", "answer": "Paaila Technology", "genre": "Awards (Nepal)" }, { "question": "Who received the 'Best STEM Educator Award' in Nepal in 2023?", "answer": "Dr. Bishnu Poudel", "genre": "Awards (Nepal)" }, { "question": "Which Nepali open-source contributor won the 'GitHub Arctic Code Vault' award in 2024?", "answer": "Sagar Sapkota", "genre": "Awards (Nepal)" }, { "question": "Who won the 'Best AI Research Paper Award' at a Nepal conference in 2023?", "answer": "Anish Shrestha", "genre": "Awards (Nepal)" }, { "question": "Which conflict saw a major escalation in 2023 with the Hamas attack on Israel?", "answer": "Israel-Hamas conflict", "genre": "Current Affairs (International)" }, { "question": "Which country experienced a major earthquake in February 2023 killing over 50,000 people?", "answer": "Turkey and Syria", "genre": "Current Affairs (International)" }, { "question": "Which global health organization declared the end of COVID-19 as a global health emergency in 2023?", "answer": "World Health Organization (WHO)", "genre": "Current Affairs (International)" }, { "question": "Which country launched the 'Global South Summit' in 2023?", "answer": "India", "genre": "Current Affairs (International)" }, { "question": "What was the main outcome of COP27 held in Egypt in 2022?", "answer": "Establishment of loss and damage fund for vulnerable countries", "genre": "Current Affairs (International)" }, { "question": "Which country faced a banking crisis with the collapse of Silicon Valley Bank in 2023?", "answer": "United States", "genre": "Current Affairs (International)" }, { "question": "Which European country joined NATO in 2023 after Russia's invasion of Ukraine?", "answer": "Finland", "genre": "Current Affairs (International)" }, { "question": "Which country launched the 'Global Gateway' initiative to counter China's Belt and Road?", "answer": "European Union", "genre": "Current Affairs (International)" }, { "question": "What was the main agenda of the G20 Summit in New Delhi in 2023?", "answer": "One Earth, One Family, One Future and African Union inclusion", "genre": "Current Affairs (International)" }, { "question": "Which country experienced the deadliest wildfire in over a century in 2023?", "answer": "Hawaii, USA (Lahaina fire)", "genre": "Current Affairs (International)" }, { "question": "Which country launched the 'Indo-Pacific Economic Framework' (IPEF) in 2023?", "answer": "United States", "genre": "Current Affairs (International)" }, { "question": "Which international treaty on plastic pollution was adopted in 2023?", "answer": "Global Plastic Treaty", "genre": "Current Affairs (International)" }, { "question": "What is Nepal's ranking in the UN Human Development Index 2023?", "answer": "146th out of 191 countries", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali city was ranked as the most polluted city in the world in 2023?", "answer": "Kathmandu", "genre": "Current Affairs (Nepal)" }, { "question": "What is the name of Nepal's digital payment system launched in 2023 for government services?", "answer": "Nagarik App", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali airport started international flights in 2023?", "answer": "Pokhara International Airport", "genre": "Current Affairs (Nepal)" }, { "question": "What was Nepal's economic growth rate in fiscal year 2022/23?", "answer": "Approximately 1.9%", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali company launched Nepal's first AI-powered chatbot in 2024?", "answer": "F1Soft International", "genre": "Current Affairs (Nepal)" }, { "question": "What is the name of Nepal's first blockchain-based land registry system?", "answer": "Digital Land Information System", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali university started offering PhD in Artificial Intelligence in 2024?", "answer": "Tribhuvan University", "genre": "Current Affairs (Nepal)" }, { "question": "What percentage of Nepali population uses mobile banking as of 2024?", "answer": "Over 60%", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali tech startup raised the highest funding in 2023?", "answer": "Foodmario", "genre": "Current Affairs (Nepal)" }, { "question": "What is the name of Nepal's cybersecurity emergency response team?", "answer": "npCERT", "genre": "Current Affairs (Nepal)" }, { "question": "Which Nepali e-commerce platform partnered with Amazon for international deliveries in 2024?", "answer": "Daraz", "genre": "Current Affairs (Nepal)" }, { "question": "Which country's researchers discovered room-temperature superconductor LK-99 in 2023?", "answer": "South Korea", "genre": "Current Affairs (Science)" }, { "question": "What major physics breakthrough was announced by Fermilab in 2023 regarding muons?", "answer": "Muon g-2 experiment confirming physics beyond Standard Model", "genre": "Current Affairs (Science)" }, { "question": "Which company announced the first successful quantum supremacy experiment in 2023?", "answer": "Google (Sycamore processor)", "genre": "Current Affairs (Science)" }, { "question": "What major climate record was broken in 2023 according to NASA?", "answer": "Hottest year on record", "genre": "Current Affairs (Science)" }, { "question": "Which country's scientists created the first synthetic human embryo in 2023?", "answer": "United Kingdom", "genre": "Current Affairs (Science)" }, { "question": "What major discovery was made about the Milky Way's black hole in 2023?", "answer": "First image of Sagittarius A*'s magnetic fields", "genre": "Current Affairs (Science)" }, { "question": "Which country launched the world's first fourth-generation nuclear reactor in 2023?", "answer": "China (Shidao Bay plant)", "genre": "Current Affairs (Science)" }, { "question": "What was the significant finding about Mars' core in 2023?", "answer": "Mars has a liquid core with molten iron", "genre": "Current Affairs (Science)" }, { "question": "Which country's researchers achieved nuclear fusion ignition for the second time in 2023?", "answer": "United States (National Ignition Facility)", "genre": "Current Affairs (Science)" }, { "question": "What major genetic engineering breakthrough was announced in 2023 for cancer treatment?", "answer": "First CRISPR-based therapy approved for sickle cell disease", "genre": "Current Affairs (Science)" }, { "question": "Which country discovered the world's largest bacterium in 2023?", "answer": "France (Thiomargarita magnifica)", "genre": "Current Affairs (Science)" }, { "question": "What was the significant finding about dinosaur extinction in 2023?", "answer": "Evidence that dinosaurs were already declining before asteroid impact", "genre": "Current Affairs (Science)" }, { "question": "Which country's scientists discovered a new state of matter in 2023?", "answer": "United States (Chiral bose-liquid state)", "genre": "Current Affairs (Science)" }, { "question": "What major ocean discovery was made in 2023 regarding marine life?", "answer": "Discovery of 5,000 new species in Clarion-Clipperton Zone", "genre": "Current Affairs (Science)" }, { "question": "Which country announced breakthrough in room-temperature superconductor in 2024?", "answer": "South Korea (LK-99 material)", "genre": "Current Affairs (Science)" }, { "question": "What was the significant climate finding about Antarctica in 2023?", "answer": "Record low sea ice extent", "genre": "Current Affairs (Science)" }, { "question": "Which country's researchers created the first brain-computer interface for paralysis patients in 2023?", "answer": "Switzerland", "genre": "Current Affairs (Science)" }, { "question": "What major discovery was made about quantum entanglement in 2023?", "answer": "Quantum entanglement at macroscopic scale demonstrated", "genre": "Current Affairs (Science)" }, { "question": "Which country announced the first successful pig-to-human heart transplant in 2023?", "answer": "United States", "genre": "Current Affairs (Science)" }, { "question": "What was the significant finding about the universe's expansion rate in 2023?", "answer": "Hubble tension remains unresolved", "genre": "Current Affairs (Science)" }, { "question": "Which country's scientists created artificial womb for premature lambs in 2023?", "answer": "Australia", "genre": "Current Affairs (Science)" }, { "question": "What major archaeological discovery was made in Egypt in 2023?", "answer": "Discovery of 4,300-year-old mummy in Saqqara", "genre": "Current Affairs (Science)" }, { "question": "Which country announced breakthrough in battery technology with sodium-ion batteries in 2023?", "answer": "China (CATL)", "genre": "Current Affairs (Science)" }, { "question": "What was the significant finding about human evolution in 2023?", "answer": "Oldest human DNA from 2 million years ago sequenced", "genre": "Current Affairs (Science)" }, { "question": "Which country's researchers discovered water on asteroid surface in 2023?", "answer": "United States (NASA's OSIRIS-REx)", "genre": "Current Affairs (Science)" }, { "question": "What major neuroscience breakthrough was announced in 2023?", "answer": "First complete brain map of insect (fruit fly)", "genre": "Current Affairs (Science)" }, { "question": "Which country announced successful test of hypersonic missile in 2023?", "answer": "North Korea", "genre": "Current Affairs (Science)" }, { "question": "What was the significant finding about exoplanets in 2023?", "answer": "Discovery of Earth-sized exoplanet in habitable zone of red dwarf", "genre": "Current Affairs (Science)" }, { "question": "Which company launched GPT-4 in March 2023?", "answer": "OpenAI", "genre": "Current Affairs (Technology)" }, { "question": "What major AI regulation was proposed by the European Union in 2023?", "answer": "AI Act", "genre": "Current Affairs (Technology)" }, { "question": "Which company announced its quantum computer with over 1000 qubits in 2023?", "answer": "IBM (Condor processor)", "genre": "Current Affairs (Technology)" }, { "question": "What was the major cybersecurity incident involving Microsoft in 2023?", "answer": "Chinese hackers breached US government emails via Microsoft cloud", "genre": "Current Affairs (Technology)" }, { "question": "Which company launched Threads as a Twitter competitor in 2023?", "answer": "Meta", "genre": "Current Affairs (Technology)" }, { "question": "What major tech acquisition was blocked by regulators in 2023?", "answer": "Microsoft's acquisition of Activision Blizzard (initially blocked, then approved)", "genre": "Current Affairs (Technology)" }, { "question": "Which company announced humanoid robot Optimus in 2023?", "answer": "Tesla", "genre": "Current Affairs (Technology)" }, { "question": "What was the major data breach affecting over 200 million users in 2023?", "answer": "23andMe data breach", "genre": "Current Affairs (Technology)" }, { "question": "Which company launched the Vision Pro mixed reality headset in 2023?", "answer": "Apple", "genre": "Current Affairs (Technology)" }, { "question": "What major cryptocurrency exchange collapsed in 2023?", "answer": "FTX", "genre": "Current Affairs (Technology)" }, { "question": "Which company announced it would stop supporting third-party cookies in Chrome in 2024?", "answer": "Google", "genre": "Current Affairs (Technology)" }, { "question": "What was the major satellite internet milestone achieved in 2023?", "answer": "Starlink reached 1.5 million subscribers", "genre": "Current Affairs (Technology)" }, { "question": "Which company launched the first 5G satellite for direct-to-phone service in 2023?", "answer": "SpaceX (Starlink)", "genre": "Current Affairs (Technology)" }, { "question": "What major advancement in battery technology was announced in 2023?", "answer": "Toyota's solid-state battery breakthrough", "genre": "Current Affairs (Technology)" }, { "question": "Which company faced major antitrust lawsuits in 2023?", "answer": "Google (multiple lawsuits from US DOJ and states)", "genre": "Current Affairs (Technology)" }, { "question": "What was the major development in autonomous vehicles in 2023?", "answer": "Waymo expanded driverless taxi service to Los Angeles", "genre": "Current Affairs (Technology)" }, { "question": "Which company announced it would lay off 10,000 employees in 2023?", "answer": "Amazon", "genre": "Current Affairs (Technology)" }, { "question": "What major advancement in nuclear fusion was announced in 2023?", "answer": "First net energy gain achieved at National Ignition Facility", "genre": "Current Affairs (Technology)" }, { "question": "Which company launched its own AI chips to compete with Nvidia in 2023?", "answer": "Google (TPU v5)", "genre": "Current Affairs (Technology)" }, { "question": "What was the major development in electric vehicle batteries in 2023?", "answer": "CATL announced condensed battery with 500 Wh/kg energy density", "genre": "Current Affairs (Technology)" }, { "question": "Which company announced quantum supremacy with 127-qubit processor in 2023?", "answer": "IBM", "genre": "Current Affairs (Technology)" }, { "question": "What major advancement in 6G research was announced in 2023?", "answer": "First 6G prototype achieving 100 Gbps speed", "genre": "Current Affairs (Technology)" }, { "question": "Which company launched its own large language model to compete with ChatGPT in 2023?", "answer": "Anthropic (Claude)", "genre": "Current Affairs (Technology)" }, { "question": "What was the major development in brain-computer interfaces in 2023?", "answer": "Neuralink received FDA approval for human trials", "genre": "Current Affairs (Technology)" }, { "question": "Which company announced breakthrough in perovskite solar cells in 2023?", "answer": "Oxford PV", "genre": "Current Affairs (Technology)" }, { "question": "What major advancement in hydrogen fuel cells was announced in 2023?", "answer": "Toyota's new hydrogen engine with 40% efficiency", "genre": "Current Affairs (Technology)" }, { "question": "Which company launched the first satellite with AI onboard in 2023?", "answer": "NASA (Intelligent Satellite)", "genre": "Current Affairs (Technology)" }, { "question": "What was the major development in Web3 technology in 2023?", "answer": "Ethereum's Shanghai upgrade enabling staking withdrawals", "genre": "Current Affairs (Technology)" }, { "question": "Who won the 2024 Pulitzer Prize for Fiction?", "answer": "Barbara Kingsolver for 'Demon Copperhead'", "genre": "Important Awards" }, { "question": "Who won the 2024 Man Booker International Prize?", "answer": "Georgi Gospodinov for 'Time Shelter'", "genre": "Important Awards" }, { "question": "Who won the 2024 Academy Award for Best Director?", "answer": "Christopher Nolan for 'Oppenheimer'", "genre": "Important Awards" }, { "question": "Who won the 2024 Nobel Peace Prize?", "answer": "Narges Mohammadi", "genre": "Important Awards" }, { "question": "Who won the 2024 Grammy Award for Best New Artist?", "answer": "Victoria Monét", "genre": "Important Awards" }, { "question": "Who won the 2024 Women's Ballon d'Or?", "answer": "Aitana Bonmatí", "genre": "Important Awards" }, { "question": "Who won the 2024 Tony Award for Best Musical?", "answer": "Kimberly Akimbo", "genre": "Important Awards" }, { "question": "Who won the 2024 Academy Award for Best Actress?", "answer": "Emma Stone for 'Poor Things'", "genre": "Important Awards" }, { "question": "Who won the 2024 Academy Award for Best Actor?", "answer": "Cillian Murphy for 'Oppenheimer'", "genre": "Important Awards" }, { "question": "Who won the 2024 Nobel Prize in Chemistry?", "answer": "Moungi Bawendi, Louis Brus and Alexei Ekimov for quantum dots", "genre": "Important Awards" }, { "question": "Who won the 2024 Nobel Prize in Literature?", "answer": "Jon Fosse", "genre": "Important Awards" }, { "question": "Who won the 2024 Nobel Prize in Economics?", "answer": "Claudia Goldin", "genre": "Important Awards" }, { "question": "Who won the 2024 BAFTA Award for Best Film?", "answer": "Oppenheimer", "genre": "Important Awards" }, { "question": "Who won the 2024 Golden Globe for Best Drama Film?", "answer": "Oppenheimer", "genre": "Important Awards" }, { "question": "Who won the 2024 Emmy Award for Best Drama Series?", "answer": "Succession", "genre": "Important Awards" }, { "question": "Who won the 2024 International Emmy Award?", "answer": "The Great British Bake Off", "genre": "Important Awards" }, { "question": "Who won the 2024 Screen Actors Guild Award for Best Ensemble?", "answer": "Oppenheimer", "genre": "Important Awards" }, { "question": "Who won the 2024 Critics Choice Award for Best Picture?", "answer": "Oppenheimer", "genre": "Important Awards" }, { "question": "Who won the 2024 National Book Award?", "answer": "Justin Torres for 'Blackouts'", "genre": "Important Awards" }, { "question": "Who won the 2024 PEN/Faulkner Award?", "answer": "Nathan Hill for 'Wellness'", "genre": "Important Awards" }, { "question": "Who won the 2024 Hugo Award for Best Novel?", "answer": "N.K. Jemisin for 'The World We Make'", "genre": "Important Awards" }, { "question": "What is the name of Google's AI model that powers Bard chatbot?", "answer": "PaLM (Pathways Language Model)", "genre": "Science & Technology (AI)" }, { "question": "Which company developed the Stable Diffusion AI image generator?", "answer": "Stability AI", "genre": "Science & Technology (AI)" }, { "question": "What does 'LLM' stand for in artificial intelligence?", "answer": "Large Language Model", "genre": "Science & Technology (AI)" }, { "question": "Which AI technique is used for generating realistic human faces?", "answer": "Generative Adversarial Networks (GANs)", "genre": "Science & Technology (AI)" }, { "question": "What is the name of Meta's open-source large language model?", "answer": "LLaMA (Large Language Model Meta AI)", "genre": "Science & Technology (AI)" }, { "question": "Which AI algorithm is used for playing complex games like Go and Chess?", "answer": "Reinforcement Learning", "genre": "Science & Technology (AI)" }, { "question": "What does 'NLP' stand for in AI?", "answer": "Natural Language Processing", "genre": "Science & Technology (AI)" }, { "question": "Which company developed the DALL-E AI image generator?", "answer": "OpenAI", "genre": "Science & Technology (AI)" }, { "question": "What is 'Deepfake' technology primarily used for?", "answer": "Creating realistic but fake audio/video content", "genre": "Science & Technology (AI)" }, { "question": "Which AI model architecture is used in Transformers?", "answer": "Attention mechanism", "genre": "Science & Technology (AI)" }, { "question": "What is 'Computer Vision' in AI?", "answer": "Field of AI that enables computers to interpret visual information", "genre": "Science & Technology (AI)" }, { "question": "Which company developed the AlphaFold AI for protein folding?", "answer": "DeepMind (Google)", "genre": "Science & Technology (AI)" }, { "question": "What does 'GPT' stand for in ChatGPT?", "answer": "Generative Pre-trained Transformer", "genre": "Science & Technology (AI)" }, { "question": "Which AI technique is used for recommendation systems?", "answer": "Collaborative Filtering", "genre": "Science & Technology (AI)" }, { "question": "What is 'Transfer Learning' in AI?", "answer": "Using knowledge from one task to improve learning in another task", "genre": "Science & Technology (AI)" }, { "question": "Which company developed the Midjourney AI image generator?", "answer": "Midjourney, Inc.", "genre": "Science & Technology (AI)" }, { "question": "What is 'Supervised Learning' in machine learning?", "answer": "Training algorithm with labeled data", "genre": "Science & Technology (AI)" }, { "question": "Which AI model is used for time series prediction?", "answer": "Recurrent Neural Networks (RNNs)", "genre": "Science & Technology (AI)" }, { "question": "What is 'Unsupervised Learning' in machine learning?", "answer": "Training algorithm with unlabeled data to find patterns", "genre": "Science & Technology (AI)" }, { "question": "Which company developed the BERT language model?", "answer": "Google", "genre": "Science & Technology (AI)" }, { "question": "What is 'Reinforcement Learning' in AI?", "answer": "Training algorithm through rewards and punishments", "genre": "Science & Technology (AI)" }, { "question": "Which AI technique is used for image classification?", "answer": "Convolutional Neural Networks (CNNs)", "genre": "Science & Technology (AI)" }, { "question": "What is 'Neural Network' in AI?", "answer": "Computing system inspired by biological neural networks", "genre": "Science & Technology (AI)" }, { "question": "Which company developed the Whisper speech recognition AI?", "answer": "OpenAI", "genre": "Science & Technology (AI)" }, { "question": "What is 'Overfitting' in machine learning?", "answer": "Model performs well on training data but poorly on new data", "genre": "Science & Technology (AI)" }, { "question": "Which AI algorithm is used for clustering similar items?", "answer": "K-means clustering", "genre": "Science & Technology (AI)" }, { "question": "What is 'Underfitting' in machine learning?", "answer": "Model fails to capture underlying pattern of data", "genre": "Science & Technology (AI)" }, { "question": "Which AI model is used for sequence-to-sequence tasks like translation?", "answer": "Transformer models", "genre": "Science & Technology (AI)" }, { "question": "What is 'Feature Engineering' in machine learning?", "answer": "Creating new input features from existing data", "genre": "Science & Technology (AI)" }, { "question": "Who won the 2024 ICC Men's T20 World Cup?", "answer": "India", "genre": "Sports" }, { "question": "Who won the 2024 UEFA Champions League?", "answer": "Real Madrid", "genre": "Sports" }, { "question": "Who won the 2024 Australian Open Men's Singles?", "answer": "Jannik Sinner", "genre": "Sports" }, { "question": "Who won the 2024 Australian Open Women's Singles?", "answer": "Aryna Sabalenka", "genre": "Sports" }, { "question": "Who won the 2024 French Open Men's Singles?", "answer": "Carlos Alcaraz", "genre": "Sports" }, { "question": "Who won the 2024 French Open Women's Singles?", "answer": "Iga Świątek", "genre": "Sports" }, { "question": "Who won the 2024 Wimbledon Men's Singles?", "answer": "Carlos Alcaraz", "genre": "Sports" }, { "question": "Who won the 2024 Wimbledon Women's Singles?", "answer": "Markéta Vondroušová", "genre": "Sports" }, { "question": "Who won the 2024 US Open Men's Singles?", "answer": "Novak Djokovic", "genre": "Sports" }, { "question": "Who won the 2024 US Open Women's Singles?", "answer": "Coco Gauff", "genre": "Sports" }, { "question": "Who won the 2024 NBA Most Valuable Player (MVP) award?", "answer": "Nikola Jokić", "genre": "Sports" }, { "question": "Who won the 2024 Super Bowl?", "answer": "Kansas City Chiefs", "genre": "Sports" }, { "question": "Who won the 2024 FIFA Club World Cup?", "answer": "Manchester City", "genre": "Sports" }, { "question": "Who won the 2024 Formula 1 World Championship?", "answer": "Max Verstappen", "genre": "Sports" }, { "question": "Who won the 2024 Tour de France?", "answer": "Jonas Vingegaard", "genre": "Sports" }, { "question": "Who won the 2024 World Athletics Championships 100m men's?", "answer": "Noah Lyles", "genre": "Sports" }, { "question": "Who won the 2024 World Athletics Championships 100m women's?", "answer": "Sha'Carri Richardson", "genre": "Sports" }, { "question": "Who won the 2024 Cricket World Cup (ODI)?", "answer": "Australia", "genre": "Sports" }, { "question": "Who won the 2024 Asia Cup (Cricket)?", "answer": "India", "genre": "Sports" }, { "question": "Who won the 2024 IPL (Indian Premier League)?", "answer": "Chennai Super Kings", "genre": "Sports" }, { "question": "Which Nepali cricket team won the Prime Minister Cup in 2024?", "answer": "Nepal Police Club", "genre": "Sports (Nepal)" }, { "question": "Which Nepali player scored the first century in T20 International for Nepal?", "answer": "Kushal Malla", "genre": "Sports (Nepal)" }, { "question": "Which Nepali footballer was named Best Goalkeeper in SAFF Championship 2023?", "answer": "Kiran Chemjong", "genre": "Sports (Nepal)" }, { "question": "Which Nepali athlete won gold in South Asian Games 2023?", "answer": "Saraswati Bhatta (athletics)", "genre": "Sports (Nepal)" }, { "question": "Which Nepali cricket team won the Everest Premier League in 2023?", "answer": "Biratnagar Super Kings", "genre": "Sports (Nepal)" }, { "question": "Which Nepali footballer plays for a foreign professional club?", "answer": "Anjan Bista (plays in India)", "genre": "Sports (Nepal)" }, { "question": "Which Nepali swimmer set a national record in 2023?", "answer": "Gaurika Singh", "genre": "Sports (Nepal)" }, { "question": "Which Nepali badminton player won National Championship in 2023?", "answer": "Prince Dahal", "genre": "Sports (Nepal)" }, { "question": "Which Nepali boxer qualified for Olympics 2024?", "answer": "No Nepali boxer qualified for 2024 Olympics", "genre": "Sports (Nepal)" }, { "question": "Which Nepali volleyball team won National Championship in 2023?", "answer": "Tribhuvan Army Club", "genre": "Sports (Nepal)" }, { "question": "Which Nepali athlete holds the national record in marathon?", "answer": "Buddhi Bahadur Tamang", "genre": "Sports (Nepal)" }, { "question": "Which Nepali cricket team won Women's National Cricket Tournament in 2023?", "answer": "Armed Police Force Club", "genre": "Sports (Nepal)" }, { "question": "Which Nepali footballer scored the most goals in 2023?", "answer": "Anjan Bista", "genre": "Sports (Nepal)" }, { "question": "Which Nepali athlete won gold in National Games 2023?", "answer": "Multiple athletes - need specific event", "genre": "Sports (Nepal)" }, { "question": "Which Nepali cricket captain led the team in 2024 T20 World Cup?", "answer": "Rohit Paudel", "genre": "Sports (Nepal)" }, { "question": "Which Nepali football club won the Martyrs Memorial A-Division League in 2023?", "answer": "Machhindra Football Club", "genre": "Sports (Nepal)" }, { "question": "Which Nepali athlete won a medal in Asian Games 2023?", "answer": "No medal in 2023. Last medal was in 2018.", "genre": "Sports (Nepal)" }, { "question": "Which Nepali cricket bowler took the most wickets in 2023?", "answer": "Sandeep Lamichhane", "genre": "Sports (Nepal)" }, { "question": "Which Nepali tennis player won National Championship in 2023?", "answer": "Abhishek Bastola", "genre": "Sports (Nepal)" }, { "question": "Which Nepali athlete holds the national record in 100m?", "answer": "Krishna Chaudhary", "genre": "Sports (Nepal)" }, { "question": "Which Nepali cricket team won the U-19 National Tournament in 2023?", "answer": "Bagmati Province", "genre": "Sports (Nepal)" }, { "question": "Which Nepali footballer was named MVP in 2023?", "answer": "Bimal Gharti Magar", "genre": "Sports (Nepal)" }, { "question": "Which Nepali athlete won gold in National Athletics Championship 2023?", "answer": "Multiple athletes - need specific event", "genre": "Sports (Nepal)" }, { "question": "Which Nepali cricket batsman has the highest ODI score?", "answer": "Rohit Paudel (126 runs)", "genre": "Sports (Nepal)" }, { "question": "Which Nepali football club has won the most A-Division titles?", "answer": "Manang Marshyangdi Club", "genre": "Sports (Nepal)" }, { "question": "Which Nepali athlete represented Nepal in Olympics 2024?", "answer": "No Nepali athlete qualified for 2024 Olympics as of now", "genre": "Sports (Nepal)" }, { "question": "Which Nepali cricket team won the Pro Club Championship in 2023?", "answer": "Nepal Police Club", "genre": "Sports (Nepal)" }];
+
+        // IndexedDB
+        const DB_NAME = 'LuminaFlashDB';
+        const DB_VERSION = 2;
+        const STORE_CARDS = 'flashcards';
+        const STORE_SETTINGS = 'settings';
+        let db = null;
+
+        // App state
+        let allCards = [];
+        let filteredCards = [];
+        let categories = {};
+        let selectedCategories = new Set();
+        let knownCards = new Set();
+        let knownFilter = 'all';
+        let currentIndex = 0;
+        let isDark = true;
+        let streak = parseInt(localStorage.getItem('lumina_streak') || '0');
+        let catColors = {};
+
+        // DOM refs
+        const uploadScreen = document.getElementById('uploadScreen');
+        const studyView = document.getElementById('studyView');
+        const flashcard = document.getElementById('flashcard');
+        const questionText = document.getElementById('questionText');
+        const answerText = document.getElementById('answerText');
+        const questionGenre = document.getElementById('questionGenre');
+        const answerGenre = document.getElementById('answerGenre');
+        const cardNumFront = document.getElementById('cardNumFront');
+        const cardNumBack = document.getElementById('cardNumBack');
+        const cardCounter = document.getElementById('cardCounter');
+        const progressFill = document.getElementById('progressFill');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const flipBtn = document.getElementById('flipBtn');
+        const knownCheckbox = document.getElementById('knownCheckbox');
+        const categoriesList = document.getElementById('categoriesList');
+        const mobCategoriesList = document.getElementById('mobCategoriesList');
+        const emptyState = document.getElementById('emptyState');
+        const cardContainer = document.getElementById('cardContainer');
+
+        // ========================
+        // INDEXEDDB
+        // ========================
+        async function initDB() {
+            return new Promise((res, rej) => {
+                const req = indexedDB.open(DB_NAME, DB_VERSION);
+                req.onupgradeneeded = e => {
+                    const d = e.target.result;
+                    if (!d.objectStoreNames.contains(STORE_CARDS)) d.createObjectStore(STORE_CARDS, { keyPath: 'id' });
+                    if (!d.objectStoreNames.contains(STORE_SETTINGS)) d.createObjectStore(STORE_SETTINGS, { keyPath: 'key' });
+                };
+                req.onsuccess = e => { db = e.target.result; res(); };
+                req.onerror = () => rej(req.error);
+            });
+        }
+
+        async function dbSet(store, val) {
+            if (!db) return;
+            return new Promise((res, rej) => {
+                const tx = db.transaction([store], 'readwrite');
+                tx.objectStore(store).put(val);
+                tx.oncomplete = res;
+                tx.onerror = () => rej(tx.error);
+            });
+        }
+
+        async function dbGetAll(store) {
+            if (!db) return [];
+            return new Promise((res, rej) => {
+                const tx = db.transaction([store], 'readonly');
+                const req = tx.objectStore(store).getAll();
+                req.onsuccess = () => res(req.result);
+                req.onerror = () => rej(req.error);
+            });
+        }
+
+        async function dbGet(store, key) {
+            if (!db) return null;
+            return new Promise((res, rej) => {
+                const tx = db.transaction([store], 'readonly');
+                const req = tx.objectStore(store).get(key);
+                req.onsuccess = () => res(req.result);
+                req.onerror = () => rej(req.error);
+            });
+        }
+
+        async function dbClearStore(store) {
+            if (!db) return;
+            return new Promise((res, rej) => {
+                const tx = db.transaction([store], 'readwrite');
+                tx.objectStore(store).clear();
+                tx.oncomplete = res;
+                tx.onerror = () => rej(tx.error);
+            });
+        }
+
+        async function saveCards() {
+            await dbClearStore(STORE_CARDS);
+            for (const c of allCards) await dbSet(STORE_CARDS, c);
+        }
+
+        async function saveSettings() {
+            await dbSet(STORE_SETTINGS, { key: 'knownCards', value: [...knownCards] });
+            await dbSet(STORE_SETTINGS, { key: 'selectedCategories', value: [...selectedCategories] });
+            await dbSet(STORE_SETTINGS, { key: 'knownFilter', value: knownFilter });
+            await dbSet(STORE_SETTINGS, { key: 'theme', value: isDark });
+        }
+
+        async function loadSettings() {
+            const kc = await dbGet(STORE_SETTINGS, 'knownCards');
+            if (kc) knownCards = new Set(kc.value);
+            const sc = await dbGet(STORE_SETTINGS, 'selectedCategories');
+            if (sc && sc.value.length) selectedCategories = new Set(sc.value);
+            const kf = await dbGet(STORE_SETTINGS, 'knownFilter');
+            if (kf) knownFilter = kf.value;
+            const th = await dbGet(STORE_SETTINGS, 'theme');
+            if (th !== null && th !== undefined) isDark = th.value;
+            applyTheme();
+        }
+
+        // ========================
+        // THEME
+        // ========================
+        function applyTheme() {
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            document.getElementById('themeToggle').innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+        }
+
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            isDark = !isDark;
+            applyTheme();
+            saveSettings();
+        });
+
+        // ========================
+        // LOAD DATA
+        // ========================
+        document.getElementById('loadDefaultBtn').addEventListener('click', () => loadCards(BUILTIN_QUESTIONS, 'Nepal Quiz Pack'));
+        document.getElementById('fileInput').addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = ev => {
+                try {
+                    const data = JSON.parse(ev.target.result);
+                    if (!Array.isArray(data) || !data.length) throw new Error('JSON must be a non-empty array');
+                    for (const item of data) {
+                        if (!item.question || !item.answer) throw new Error('Each item must have "question" and "answer"');
+                        if (!item.genre) throw new Error('Each item must have a "genre"');
+                    }
+                    loadCards(data, file.name.replace('.json', ''));
+                } catch (err) {
+                    document.getElementById('uploadErr').textContent = '❌ ' + err.message;
+                }
+            };
+            reader.readAsText(file);
+        });
+
+        // Drag and drop
+        const uploadZone = document.getElementById('uploadZone');
+        uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('drag-over'); });
+        uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('drag-over'));
+        uploadZone.addEventListener('drop', e => {
+            e.preventDefault();
+            uploadZone.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file) {
+                const fakeEvent = { target: { files: [file] } };
+                document.getElementById('fileInput').files = e.dataTransfer.files;
+                document.getElementById('fileInput').dispatchEvent(new Event('change'));
+            }
+        });
+
+        async function loadCards(data, deckName) {
+            allCards = data.map((c, i) => ({ ...c, id: i + 1 }));
+            knownCards = new Set();
+            selectedCategories = new Set();
+            await saveCards();
+            processCategories(deckName);
+            showStudyView();
+            await saveSettings();
+        }
+
+        document.getElementById('reuploadBtn').addEventListener('click', async () => {
+            if (!confirm('Reset this deck? Your progress will be cleared.')) return;
+            await dbClearStore(STORE_CARDS);
+            await dbClearStore(STORE_SETTINGS);
+            allCards = [];
+            filteredCards = [];
+            knownCards = new Set();
+            selectedCategories = new Set();
+            knownFilter = 'all';
+            currentIndex = 0;
+            uploadScreen.style.display = '';
+            studyView.style.display = 'none';
+            document.getElementById('reuploadBtn').style.display = 'none';
+            renderCategoryFilters();
+        });
+
+        // ========================
+        // CATEGORIES
+        // ========================
+        const COLORS = ['#7c6fef', '#10d9a0', '#f05572', '#f5a623', '#38bdf8', '#a78bfa', '#fb7185', '#34d399', '#fbbf24', '#60a5fa', '#e879f9', '#4ade80', '#f97316'];
+
+        function processCategories(deckName) {
+            categories = {};
+            allCards.forEach(c => {
+                if (!categories[c.genre]) categories[c.genre] = [];
+                categories[c.genre].push(c);
+            });
+            // Assign colors
+            Object.keys(categories).sort().forEach((g, i) => { catColors[g] = COLORS[i % COLORS.length]; });
+            if (!selectedCategories.size) selectedCategories = new Set(Object.keys(categories));
+            document.getElementById('deckTitle').textContent = deckName || 'Flashcards';
+            renderCategoryFilters();
+        }
+
+        function renderCategoryFilters() {
+            const allGenres = Object.keys(categories).sort();
+            const searchVal = (document.getElementById('searchInput').value || '').toLowerCase();
+            const mobSearchVal = (document.getElementById('searchInput2').value || '').toLowerCase();
+            const filtered = allGenres.filter(g => g.toLowerCase().includes(searchVal));
+            const mobFiltered = allGenres.filter(g => g.toLowerCase().includes(mobSearchVal));
+
+            const makeRow = (g, i) => {
+                const ci = allGenres.indexOf(g);
+                const div = document.createElement('div');
+                div.className = `cat-pill color-${ci % 13}`;
+                if (selectedCategories.has(g)) div.classList.add('active');
+                div.innerHTML = `
+      <div class="cat-pill-left">
+        <div class="cat-pill-dot" style="background:${catColors[g] || '#7c6fef'}"></div>
+        <span class="cat-pill-name">${g}</span>
+      </div>
+      <span class="cat-pill-count">${categories[g].length}</span>`;
+                div.addEventListener('click', () => toggleCategory(g));
+                return div;
+            };
+
+            categoriesList.innerHTML = '';
+            filtered.forEach((g, i) => categoriesList.appendChild(makeRow(g, i)));
+
+            mobCategoriesList.innerHTML = '';
+            mobFiltered.forEach((g, i) => mobCategoriesList.appendChild(makeRow(g, i)));
+
+            const total = allGenres.length;
+            document.getElementById('catCountLabel').textContent = `${total} categories`;
+            document.getElementById('mobCatCountLabel').textContent = `${total} categories`;
+            document.getElementById('selectAllBtn').textContent = selectedCategories.size === total ? 'Deselect All' : 'Select All';
+            document.getElementById('mobSelectAllBtn').textContent = selectedCategories.size === total ? 'Deselect All' : 'Select All';
+        }
+
+        async function toggleCategory(g) {
+            if (selectedCategories.has(g)) { selectedCategories.delete(g); }
+            else { selectedCategories.add(g); }
+            await saveSettings();
+            filterCards();
+            renderCategoryFilters();
+        }
+
+        async function toggleSelectAll() {
+            const all = Object.keys(categories);
+            if (selectedCategories.size === all.length) selectedCategories = new Set();
+            else selectedCategories = new Set(all);
+            await saveSettings();
+            filterCards();
+            renderCategoryFilters();
+        }
+
+        document.getElementById('selectAllBtn').addEventListener('click', toggleSelectAll);
+        document.getElementById('mobSelectAllBtn').addEventListener('click', toggleSelectAll);
+
+        document.getElementById('searchInput').addEventListener('input', renderCategoryFilters);
+        document.getElementById('searchInput2').addEventListener('input', renderCategoryFilters);
+
+        // ========================
+        // FILTER
+        // ========================
+        function setupFilterChips() {
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', async () => {
+                    const container = chip.closest('.filter-row');
+                    container.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                    chip.classList.add('active');
+                    // sync both rows
+                    const f = chip.dataset.filter;
+                    knownFilter = f;
+                    document.querySelectorAll('.filter-chip').forEach(c => {
+                        if (c.dataset.filter === f) c.classList.add('active');
+                        else c.classList.remove('active');
+                    });
+                    await saveSettings();
+                    filterCards();
+                });
+            });
+        }
+
+        function resetFilters() {
+            knownFilter = 'all';
+            selectedCategories = new Set(Object.keys(categories));
+            document.querySelectorAll('.filter-chip').forEach(c => {
+                if (c.dataset.filter === 'all') c.classList.add('active');
+                else c.classList.remove('active');
+            });
+            renderCategoryFilters();
+            filterCards();
+        }
+        window.resetFilters = resetFilters;
+
+        // ========================
+        // FILTER CARDS
+        // ========================
+        function filterCards() {
+            if (!selectedCategories.size) { filteredCards = []; }
+            else {
+                filteredCards = allCards.filter(c => selectedCategories.has(c.genre));
+                if (knownFilter === 'known') filteredCards = filteredCards.filter(c => knownCards.has(c.id));
+                else if (knownFilter === 'unknown') filteredCards = filteredCards.filter(c => !knownCards.has(c.id));
+            }
+            currentIndex = Math.min(currentIndex, Math.max(0, filteredCards.length - 1));
+            updateUI();
+            if (filteredCards.length) displayCard(false);
+        }
+
+        // ========================
+        // DISPLAY
+        // ========================
+        function showStudyView() {
+            uploadScreen.style.display = 'none';
+            studyView.style.display = '';
+            document.getElementById('reuploadBtn').style.display = '';
+            filterCards();
+        }
+
+        function displayCard(animate = true) {
+            if (!filteredCards.length) return;
+            flashcard.classList.remove('flipped');
+            const card = filteredCards[currentIndex];
+
+            if (animate) {
+                const fc = document.getElementById('cardContainer');
+                fc.style.opacity = '0';
+                fc.style.transform = 'translateY(12px) scale(.98)';
+                setTimeout(() => {
+                    applyCardContent(card);
+                    fc.style.transition = 'opacity .3s ease, transform .35s cubic-bezier(.4,0,.2,1)';
+                    fc.style.opacity = '1';
+                    fc.style.transform = '';
+                }, 150);
+                setTimeout(() => { fc.style.transition = ''; }, 500);
+            } else {
+                applyCardContent(card);
+            }
+        }
+
+        function applyCardContent(card) {
+            questionText.textContent = card.question;
+            answerText.textContent = card.answer;
+            questionGenre.textContent = card.genre;
+            answerGenre.textContent = card.genre;
+            const num = `${currentIndex + 1} / ${filteredCards.length}`;
+            cardNumFront.textContent = num;
+            cardNumBack.textContent = num;
+            cardCounter.textContent = num;
+            knownCheckbox.checked = knownCards.has(card.id);
+            const pct = ((currentIndex + 1) / filteredCards.length) * 100;
+            progressFill.style.width = pct + '%';
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === filteredCards.length - 1;
+        }
+
+        function updateUI() {
+            const total = allCards.length;
+            const known = knownCards.size;
+            const unknown = total - known;
+            const active = filteredCards.length;
+
+            document.getElementById('statTotal').textContent = total;
+            document.getElementById('statKnown').textContent = known;
+            document.getElementById('statUnknown').textContent = unknown;
+            document.getElementById('navTotal').textContent = total;
+            document.getElementById('navKnown').textContent = known;
+            document.getElementById('navStreak').textContent = streak;
+            document.getElementById('metaCards').textContent = active + ' cards';
+            document.getElementById('metaKnown').textContent = known + ' known';
+            document.getElementById('metaLeft').textContent = unknown + ' left';
+            document.getElementById('sideActiveCount').textContent = active;
+            document.getElementById('deckSubtitle').textContent = active ? 'Click any card to reveal the answer' : 'No cards match your filters';
+
+            const pct = total ? Math.round((known / total) * 100) : 0;
+            document.getElementById('sideProgressFill').style.width = pct + '%';
+            document.getElementById('sideProgressLabel').textContent = pct + '% complete';
+            document.getElementById('sideCardCounts').textContent = `${known}/${total}`;
+
+            const hasCards = filteredCards.length > 0;
+            cardContainer.style.display = hasCards ? '' : 'none';
+            document.getElementById('controls').style.display = hasCards ? '' : 'none';
+            document.getElementById('knownRow').style.display = hasCards ? '' : 'none';
+            document.getElementById('shortcutBar').style.display = hasCards ? '' : 'none';
+            document.getElementById('emptyState').style.display = hasCards ? 'none' : 'flex';
+            document.getElementById('progressTrack').style.display = hasCards ? '' : 'none';
+        }
+
+        // ========================
+        // INTERACTIONS
+        // ========================
+        flashcard.addEventListener('click', () => flashcard.classList.toggle('flipped'));
+        flipBtn.addEventListener('click', () => flashcard.classList.toggle('flipped'));
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) { currentIndex--; displayCard(); }
+        });
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < filteredCards.length - 1) { currentIndex++; displayCard(); }
+        });
+
+        knownCheckbox.addEventListener('change', async () => {
+            if (!filteredCards.length) return;
+            const card = filteredCards[currentIndex];
+            if (knownCheckbox.checked) {
+                knownCards.add(card.id);
+                showToast('Marked as known!');
+                streak++;
+                localStorage.setItem('lumina_streak', streak);
+                if (knownCards.size % 10 === 0) fireConfetti();
+                // auto advance
+                setTimeout(() => {
+                    if (currentIndex < filteredCards.length - 1) { currentIndex++; displayCard(); }
+                }, 500);
+            } else {
+                knownCards.delete(card.id);
+                showToast('Marked as unknown');
+            }
+            await saveSettings();
+            updateUI();
+            filterCards();
+        });
+
+        // Shuffle
+        document.getElementById('shuffleBtn').addEventListener('click', () => {
+            for (let i = filteredCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [filteredCards[i], filteredCards[j]] = [filteredCards[j], filteredCards[i]];
+            }
+            currentIndex = 0;
+            displayCard();
+            showToast('Cards shuffled!');
+        });
+
+        // Keyboard
+        document.addEventListener('keydown', e => {
+            if (!filteredCards.length) return;
+            if (e.target.tagName === 'INPUT') return;
+            if (e.key === 'ArrowLeft' || e.key === 'a') { if (currentIndex > 0) { currentIndex--; displayCard(); } }
+            if (e.key === 'ArrowRight' || e.key === 'd') { if (currentIndex < filteredCards.length - 1) { currentIndex++; displayCard(); } }
+            if (e.key === ' ') { e.preventDefault(); flashcard.classList.toggle('flipped'); }
+            if (e.key === 'k' || e.key === 'K') { knownCheckbox.checked = !knownCheckbox.checked; knownCheckbox.dispatchEvent(new Event('change')); }
+            if (e.key === 's' || e.key === 'S') { document.getElementById('shuffleBtn').click(); }
+        });
+
+        // Touch / swipe
+        let touchStartX = 0, touchStartY = 0;
+        flashcard.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+        flashcard.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+                if (dx < 0 && currentIndex < filteredCards.length - 1) { currentIndex++; displayCard(); }
+                else if (dx > 0 && currentIndex > 0) { currentIndex--; displayCard(); }
+            } else if (Math.abs(dy) < 10 && Math.abs(dx) < 10) {
+                flashcard.classList.toggle('flipped');
+            }
+        }, { passive: true });
+
+        // ========================
+        // MOBILE NAV
+        // ========================
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        const mobileSidebar = document.getElementById('mobileSidebar');
+
+        function openMobileSheet() {
+            mobileSidebar.style.display = 'block';
+            sidebarOverlay.style.display = 'block';
+            setTimeout(() => mobileSidebar.classList.add('open'), 10);
+        }
+        function closeMobileSheet() {
+            mobileSidebar.classList.remove('open');
+            setTimeout(() => {
+                mobileSidebar.style.display = 'none';
+                sidebarOverlay.style.display = 'none';
+            }, 350);
+        }
+        sidebarOverlay.addEventListener('click', closeMobileSheet);
+        document.getElementById('mobNavCats').addEventListener('click', () => { openMobileSheet(); });
+        document.getElementById('mobNavFilter').addEventListener('click', () => { openMobileSheet(); });
+        document.getElementById('mobNavStudy').addEventListener('click', () => {
+            closeMobileSheet();
+            document.querySelectorAll('.mob-nav-item').forEach(i => i.classList.remove('active'));
+            document.getElementById('mobNavStudy').classList.add('active');
+        });
+
+        // ========================
+        // TOAST
+        // ========================
+        let toastTimer = null;
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            t.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
+        // ========================
+        // CONFETTI
+        // ========================
+        function fireConfetti() {
+            const colors = ['#7c6fef', '#10d9a0', '#f05572', '#f5a623', '#38bdf8', '#fff'];
+            for (let i = 0; i < 60; i++) {
+                const el = document.createElement('div');
+                el.className = 'confetti-particle';
+                el.style.cssText = `
+      left:${Math.random() * 100}vw;
+      top:0;
+      background:${colors[Math.floor(Math.random() * colors.length)]};
+      width:${6 + Math.random() * 8}px;
+      height:${6 + Math.random() * 8}px;
+      border-radius:${Math.random() > .5 ? '50%' : '3px'};
+      animation-delay:${Math.random() * .8}s;
+      animation-duration:${1.5 + Math.random() * .8}s;
+    `;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 2500);
+            }
+            showToast('🎉 Milestone!');
+        }
+
+
+        // ========================
+        // SIDEBAR RESIZE
+        // ========================
+        (function() {
+            const sidebar = document.getElementById('sidebar');
+            const handle = document.getElementById('sidebarResizeHandle');
+            if (!sidebar || !handle) return;
+
+            const MIN_WIDTH = 180;
+            const MAX_WIDTH = 420;
+            let isResizing = false;
+            let startX = 0;
+            let startWidth = 0;
+
+            function clamp(v, min, max) { return Math.min(Math.max(v, min), max); }
+
+            function applyWidth(w) {
+                const clamped = clamp(w, MIN_WIDTH, MAX_WIDTH);
+                sidebar.style.setProperty('--sidebar-width', clamped + 'px', 'important');
+                sidebar.style.width = clamped + 'px';
+            }
+
+            handle.addEventListener('mousedown', e => {
+                isResizing = true;
+                startX = e.clientX;
+                startWidth = sidebar.getBoundingClientRect().width;
+                handle.classList.add('dragging');
+                document.body.style.userSelect = 'none';
+                document.body.style.cursor = 'col-resize';
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', e => {
+                if (!isResizing) return;
+                const delta = e.clientX - startX;
+                applyWidth(startWidth + delta);
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (!isResizing) return;
+                isResizing = false;
+                handle.classList.remove('dragging');
+                document.body.style.userSelect = '';
+                document.body.style.cursor = '';
+            });
+
+            // Touch support
+            handle.addEventListener('touchstart', e => {
+                isResizing = true;
+                startX = e.touches[0].clientX;
+                startWidth = sidebar.getBoundingClientRect().width;
+                handle.classList.add('dragging');
+                e.preventDefault();
+            }, { passive: false });
+
+            document.addEventListener('touchmove', e => {
+                if (!isResizing) return;
+                const delta = e.touches[0].clientX - startX;
+                applyWidth(startWidth + delta);
+            }, { passive: true });
+
+            document.addEventListener('touchend', () => {
+                isResizing = false;
+                handle.classList.remove('dragging');
+            });
+        })();
+
+        // ========================
+        // INIT
+        // ========================
+        async function init() {
+            await initDB();
+            const thSetting = await dbGet(STORE_SETTINGS, 'theme');
+            if (thSetting !== null && thSetting !== undefined) { isDark = thSetting.value; }
+            else { isDark = window.matchMedia('(prefers-color-scheme: dark)').matches; }
+            applyTheme();
+
+            const savedCards = await dbGetAll(STORE_CARDS);
+            if (savedCards && savedCards.length) {
+                allCards = savedCards;
+                await loadSettings();
+                processCategories('Nepal Quiz Pack');
+                showStudyView();
+            } else {
+                uploadScreen.style.display = '';
+                studyView.style.display = 'none';
+            }
+
+            setupFilterChips();
+        }
+
+        init();
+    </script>
+</body>
+
+</html>

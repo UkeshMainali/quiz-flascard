@@ -1,0 +1,3247 @@
+[
+    {
+        "question": "Which Nepali mountain climber made history in 2023 by becoming the first woman to climb Mount Everest twice in a single season?",
+        "answer": "Lhakpa Sherpa",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is the name of Nepal's first domestically built electric car, unveiled in 2024?",
+        "answer": "EV Mustang",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which major digital payment system was integrated into Nepal's banking system in 2024, allowing cross-border transactions with India?",
+        "answer": "Unified Payments Interface (UPI)",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which country assumed the presidency of the United Nations Security Council for December 2024?",
+        "answer": "Russia",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which two South American countries officially joined the BRICS alliance in 2024?",
+        "answer": "Argentina and Egypt (Note: Argentina later declined, Egypt joined)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What is the name of the deepfake audio call scam that targeted a major UK company in 2024, highlighting AI-powered fraud risks?",
+        "answer": "The AI-generated CEO voice scam (targeting London-based hedge fund)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which country successfully landed its 'Chandrayaan-3' mission on the Moon's south pole in August 2023?",
+        "answer": "India",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which social media platform was rebranded to 'X' in 2023?",
+        "answer": "Twitter",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which Nepali scientist was awarded the 'Dr. R.L. Sanghvi Young Scientist Award 2024' in the field of Chemical Sciences?",
+        "answer": "Dr. Sujan Malla",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who won the 2023 Nobel Prize in Physics for experimental methods that generate attosecond pulses of light?",
+        "answer": "Pierre Agostini, Ferenc Krausz, and Anne L'Huillier",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Which film won the Academy Award (Oscar) for Best Picture in 2024?",
+        "answer": "Oppenheimer",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the FIFA Women's World Cup in 2023?",
+        "answer": "Spain",
+        "genre": "Sports"
+    },
+    {
+        "question": "Which country won the ICC Men's Cricket World Cup in 2023?",
+        "answer": "Australia",
+        "genre": "Sports"
+    },
+    {
+        "question": "Which Nepali para-athlete won a gold medal in the men's javelin throw F46 category at the 2023 Asian Para Games?",
+        "answer": "Sagar Thapa",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Who won the 2024 Ballon d'Or award for the world's best male footballer?",
+        "answer": "Lionel Messi (for his 2022 World Cup performance, awarded in 2023) - Note: As of late 2024, the 2024 winner is not yet announced. A more current answer would be Jude Bellingham (expected frontrunner). For accuracy, state 'Award not yet announced as of late 2024'.",
+        "genre": "Sports"
+    },
+    {
+        "question": "What does the acronym 'API' stand for in software development?",
+        "answer": "Application Programming Interface",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which programming paradigm is primarily used in the Java language?",
+        "answer": "Object-Oriented Programming (OOP)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "In database management, what does 'ACID' stand for?",
+        "answer": "Atomicity, Consistency, Isolation, Durability",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is the name of the protocol that secures communication over a computer network, widely used for HTTPS?",
+        "answer": "Transport Layer Security (TLS), or its predecessor SSL",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the 'ChatGPT' AI chatbot, released in late 2022?",
+        "answer": "OpenAI",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is the name of Google's most advanced large language model AI, released as a competitor to ChatGPT?",
+        "answer": "Gemini (formerly Bard)",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "In cybersecurity, what is a 'Zero-Day' vulnerability?",
+        "answer": "A software security flaw that is unknown to the vendor and has no patch available, making attackers have 'zero days' to exploit it.",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'IoT' stand for?",
+        "answer": "Internet of Things",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure operates on a 'First In, First Out' (FIFO) principle?",
+        "answer": "Queue",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is the name of the algorithm used by Bitcoin for achieving distributed consensus without a central authority?",
+        "answer": "Proof of Work (PoW)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is the name of the world's first scientific and practical quantum computer, launched by IBM in 2023?",
+        "answer": "IBM Quantum System Two",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which NASA rover discovered evidence of past water activity and organic molecules on Mars?",
+        "answer": "Perseverance Rover (also Curiosity)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What is 'CRISPR-Cas9' primarily used for?",
+        "answer": "Gene editing (precise modification of DNA within organisms)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which material, a single layer of carbon atoms arranged in a hexagonal lattice, won the Nobel Prize in Physics in 2010?",
+        "answer": "Graphene",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the name of the first artificial Earth satellite, launched in 1957?",
+        "answer": "Sputnik 1",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who is credited with inventing the World Wide Web in 1989?",
+        "answer": "Tim Berners-Lee",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What does the 'HTTP' in a web URL stand for?",
+        "answer": "HyperText Transfer Protocol",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company first introduced the GUI (Graphical User Interface) for personal computers?",
+        "answer": "Xerox (at PARC), but popularized by Apple with the Macintosh.",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What is the name of the virus that causes the disease COVID-19?",
+        "answer": "SARS-CoV-2 (Severe Acute Respiratory Syndrome Coronavirus 2)",
+        "genre": "Health"
+    },
+    {
+        "question": "Which type of vaccine technology was used in Pfizer-BioNTech and Moderna COVID-19 vaccines?",
+        "answer": "mRNA (messenger RNA) technology",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the term for a disease that is prevalent over a whole country or the world?",
+        "answer": "Pandemic",
+        "genre": "Health"
+    },
+    {
+        "question": "What does 'WHO' stand for?",
+        "answer": "World Health Organization",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ in the human body produces insulin?",
+        "answer": "Pancreas",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the name of NASA's mission that successfully returned a sample from an asteroid to Earth in 2023?",
+        "answer": "OSIRIS-REx (from asteroid Bennu)",
+        "genre": "Space"
+    },
+    {
+        "question": "Which country's space agency launched the 'Aditya-L1' mission to study the Sun in 2023?",
+        "answer": "India (ISRO)",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the most powerful space telescope currently operational, launched in 2021?",
+        "answer": "James Webb Space Telescope (JWST)",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet in our solar system has the most moons, as confirmed in 2023?",
+        "answer": "Saturn",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first private mission to successfully land on the Moon, achieved in 2024?",
+        "answer": "Intuitive Machines' IM-1 mission (Odysseus lander)",
+        "genre": "Space"
+    },
+    {
+        "question": "Which protocol is the foundation of data communication on the World Wide Web?",
+        "answer": "HTTP (Hypertext Transfer Protocol)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is the primary function of a DNS server?",
+        "answer": "To translate human-readable domain names (like google.com) into machine-readable IP addresses.",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "In object-oriented programming, what is the concept of hiding internal implementation details called?",
+        "answer": "Encapsulation",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure uses a 'Last In, First Out' (LIFO) principle?",
+        "answer": "Stack",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'SQL' stand for?",
+        "answer": "Structured Query Language",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which Nepali university launched Nepal's first supercomputer, 'PARAM Kanchenjunga', in 2023?",
+        "answer": "Kathmandu University",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is the name of Nepal's digital identity system initiated by the government in 2024?",
+        "answer": "National Digital Identity (NDI) or Digital ID",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali tech company became the first to list on the Stock Exchange in 2023?",
+        "answer": "CG Telecom",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which international tech giant opened its first Cloud Region in Nepal in 2023?",
+        "answer": "Google (Google Cloud Region)",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What percentage of Nepal's population has internet access as per 2024 reports?",
+        "answer": "Approximately 80-85%",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali startup won the 'Seedstars World' competition in 2023 for their agri-tech solution?",
+        "answer": "Smart Krishi",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is the name of Nepal's digital payment wallet launched by Nepal Rastra Bank?",
+        "answer": "Connect IPS",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which cyber security incident in 2023 targeted multiple Nepali banks and financial institutions?",
+        "answer": "The 'Phishing' campaign targeting e-banking credentials",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is Nepal's rank in the Global Cybersecurity Index 2023?",
+        "answer": "Around 94th out of 194 countries",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali government service was fully digitized in 2024 to reduce corruption?",
+        "answer": "Driving License issuance and renewal",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What was the theme of Nepal's National ICT Day 2024?",
+        "answer": "Digital Transformation for Prosperous Nepal",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali e-commerce platform became the first to offer same-day delivery in Kathmandu Valley?",
+        "answer": "Sastodeal",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is the name of Nepal's satellite launched in 2022 for earth observation?",
+        "answer": "NepaliSat-1",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which programming language is most taught in Nepali CSIT curricula?",
+        "answer": "Java",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is Nepal's position in the Global Innovation Index 2023?",
+        "answer": "108th out of 132 economies",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which country became the world's most populous in 2023 according to UN estimates?",
+        "answer": "India",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What is the name of the AI Safety Summit hosted by the UK in 2023?",
+        "answer": "Bletchley Park AI Safety Summit",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country launched the 'Digital Public Infrastructure' initiative at the G20 summit in 2023?",
+        "answer": "India",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What was the main agenda of COP28 held in Dubai in 2023?",
+        "answer": "First Global Stocktake and transition away from fossil fuels",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country experienced devastating wildfires in 2023, killing over 100 people?",
+        "answer": "Hawaii, USA (Lahaina wildfire)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What is the name of the peace agreement signed between Ethiopia and Tigray rebels in 2023?",
+        "answer": "Pretoria Agreement",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country's currency, the Argentine Peso, was replaced by the 'Argentine Nuevo Peso' in 2023?",
+        "answer": "Argentina",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What is the name of the global minimum tax agreement implemented by OECD in 2024?",
+        "answer": "Pillar Two (Global Minimum Tax of 15%)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which social media platform faced a major outage in 2023 affecting billions of users?",
+        "answer": "Facebook, Instagram, and WhatsApp (Meta platforms)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What is the name of the EU's Digital Services Act that came into effect in 2024?",
+        "answer": "Digital Services Act (DSA)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country launched the world's first central bank digital currency (CBDC) for cross-border payments?",
+        "answer": "China (Digital Yuan)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What was the main focus of the World Economic Forum 2024 in Davos?",
+        "answer": "Rebuilding Trust and Artificial Intelligence",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which company faced the largest data breach in 2023 affecting 1.5 billion users?",
+        "answer": "DarkBeam (cybersecurity firm)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What is the name of the UK's Online Safety Bill passed in 2023?",
+        "answer": "Online Safety Act",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country experienced a major submarine cable cut in 2024 affecting internet connectivity?",
+        "answer": "Several African countries (ACE and WACS cables)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Who won the 2024 Turing Award, often called the 'Nobel Prize of Computing'?",
+        "answer": "Not announced yet (as of late 2024). 2023 winner was Bob Metcalfe for Ethernet.",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Which Nepali filmmaker won the Best Documentary award at the 2024 Cannes Film Festival?",
+        "answer": "No Nepali filmmaker won in 2024. Earlier, 'The Black Hen' (2015) was Nepal's official entry.",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Nobel Prize in Medicine for mRNA vaccine technology?",
+        "answer": "Katalin Karikó and Drew Weissman",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Which Indian author won the 2023 International Booker Prize?",
+        "answer": "Geetanjali Shree for 'Tomb of Sand'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Grammy Award for Album of the Year?",
+        "answer": "Taylor Swift for 'Midnights'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Which scientist won the 2024 Breakthrough Prize in Life Sciences?",
+        "answer": "Demis Hassabis and John Jumper for AlphaFold",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Pritzker Architecture Prize?",
+        "answer": "Riken Yamamoto",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Which country won the 2024 Thomas Cup (Men's Badminton Team Championship)?",
+        "answer": "China",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 T20 Cricket World Cup?",
+        "answer": "Not held yet (scheduled for 2024). 2022 winner was England.",
+        "genre": "Sports"
+    },
+    {
+        "question": "Which Nepali cricketer scored the fastest century in ODI cricket for Nepal?",
+        "answer": "Kushal Malla (in 34 balls vs Mongolia)",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Who won the 2024 Ballon d'Or Féminin (Women's Ballon d'Or)?",
+        "answer": "Aitana Bonmatí",
+        "genre": "Sports"
+    },
+    {
+        "question": "Which country hosted the 2024 Summer Olympics?",
+        "answer": "France (Paris)",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 NBA Championship?",
+        "answer": "Denver Nuggets (2023). 2024 not completed yet.",
+        "genre": "Sports"
+    },
+    {
+        "question": "Which Nepali athlete won a gold medal in the 2023 Asian Games?",
+        "answer": "None in 2023. Earlier, Taekwondo in 2018.",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Who won the 2024 ICC Women's T20 World Cup?",
+        "answer": "Australia",
+        "genre": "Sports"
+    },
+    {
+        "question": "Which country won the 2024 Rugby World Cup?",
+        "answer": "South Africa (2023). Next is 2027.",
+        "genre": "Sports"
+    },
+    {
+        "question": "What does 'DevOps' stand for in software engineering?",
+        "answer": "Development and Operations",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which sorting algorithm has the worst-case time complexity of O(n²)?",
+        "answer": "Bubble Sort, Selection Sort, Insertion Sort",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is the purpose of the 'git clone' command?",
+        "answer": "To create a copy of a remote repository on your local machine",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which layer of the OSI model is responsible for logical addressing?",
+        "answer": "Network Layer (Layer 3)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Docker' primarily used for?",
+        "answer": "Containerization of applications",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which database model stores data in tables with rows and columns?",
+        "answer": "Relational Database Model",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'CSS' stand for in web development?",
+        "answer": "Cascading Style Sheets",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which programming language is known for its use in data science and machine learning?",
+        "answer": "Python",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is the time complexity of binary search?",
+        "answer": "O(log n)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for secure shell access to remote servers?",
+        "answer": "SSH (Secure Shell)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Big O Notation' used for?",
+        "answer": "Describing the performance or complexity of an algorithm",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure is used for implementing recursion?",
+        "answer": "Stack",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'API Gateway' do in microservices architecture?",
+        "answer": "Acts as a single entry point for all client requests and routes them to appropriate services",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which type of testing checks individual components of software?",
+        "answer": "Unit Testing",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Kubernetes' used for?",
+        "answer": "Container orchestration (managing containerized applications)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which cryptographic algorithm is used in Bitcoin?",
+        "answer": "SHA-256",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'REST' stand for in API design?",
+        "answer": "Representational State Transfer",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which database is known as a NoSQL document database?",
+        "answer": "MongoDB",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is the purpose of 'Load Balancer' in networking?",
+        "answer": "Distributes network traffic across multiple servers to ensure no single server is overwhelmed",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which programming paradigm is Haskell based on?",
+        "answer": "Functional Programming",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'VPN' stand for?",
+        "answer": "Virtual Private Network",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which algorithm is used for shortest path finding in graphs?",
+        "answer": "Dijkstra's Algorithm",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'CI/CD' in software development?",
+        "answer": "Continuous Integration and Continuous Deployment/Delivery",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for email transmission?",
+        "answer": "SMTP (Simple Mail Transfer Protocol)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Blockchain' technology primarily used for?",
+        "answer": "Creating decentralized, immutable ledgers for transactions",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure provides O(1) time complexity for search, insert, and delete?",
+        "answer": "Hash Table",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'XML' stand for?",
+        "answer": "eXtensible Markup Language",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the React library?",
+        "answer": "Facebook (Meta)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Machine Learning'?",
+        "answer": "A subset of AI that enables systems to learn and improve from experience without explicit programming",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for dynamic IP address assignment?",
+        "answer": "DHCP (Dynamic Host Configuration Protocol)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Agile Methodology' in software development?",
+        "answer": "An iterative approach to project management and software development",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which database constraint ensures all values in a column are unique?",
+        "answer": "UNIQUE constraint",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'HTTP 404' status code mean?",
+        "answer": "Not Found",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which algorithm is used for page replacement in operating systems?",
+        "answer": "LRU (Least Recently Used)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Virtual Memory'?",
+        "answer": "A memory management technique that uses disk space as an extension of RAM",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which programming language is used for Android app development?",
+        "answer": "Kotlin (or Java)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'SQL Injection' refer to?",
+        "answer": "A code injection technique used to attack data-driven applications",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which algorithm is used for public-key encryption?",
+        "answer": "RSA (Rivest-Shamir-Adleman)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Cloud Computing'?",
+        "answer": "Delivery of computing services over the internet ('the cloud')",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure is used for implementing priority queue?",
+        "answer": "Heap",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'DOM' stand for in web development?",
+        "answer": "Document Object Model",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the TypeScript programming language?",
+        "answer": "Microsoft",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Neural Network' in AI?",
+        "answer": "A series of algorithms that mimic the operations of a human brain",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for file transfer?",
+        "answer": "FTP (File Transfer Protocol)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'JSON' stand for?",
+        "answer": "JavaScript Object Notation",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which search algorithm requires the data to be sorted?",
+        "answer": "Binary Search",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Cryptocurrency'?",
+        "answer": "A digital or virtual currency that uses cryptography for security",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the Python programming language?",
+        "answer": "Guido van Rossum (individual)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'URL' stand for?",
+        "answer": "Uniform Resource Locator",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure uses 'key-value' pairs?",
+        "answer": "Dictionary (or Map or Hash Table)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Artificial Intelligence'?",
+        "answer": "The simulation of human intelligence in machines",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for voice over IP (VoIP)?",
+        "answer": "SIP (Session Initiation Protocol)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'CPU' stand for?",
+        "answer": "Central Processing Unit",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which sorting algorithm is known for its divide-and-conquer approach?",
+        "answer": "Merge Sort",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Git'?",
+        "answer": "A distributed version control system",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the Java programming language?",
+        "answer": "Sun Microsystems (now owned by Oracle)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'HTML' stand for?",
+        "answer": "HyperText Markup Language",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which database operation is used to retrieve data?",
+        "answer": "SELECT",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Deep Learning'?",
+        "answer": "A subset of machine learning using neural networks with multiple layers",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for network time synchronization?",
+        "answer": "NTP (Network Time Protocol)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'RAM' stand for?",
+        "answer": "Random Access Memory",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which algorithm is used for minimum spanning tree?",
+        "answer": "Prim's or Kruskal's Algorithm",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Object-Oriented Programming'?",
+        "answer": "A programming paradigm based on objects containing data and methods",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the C++ programming language?",
+        "answer": "Bjarne Stroustrup (individual)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'SQL' stand for?",
+        "answer": "Structured Query Language",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure is FIFO (First-In-First-Out)?",
+        "answer": "Queue",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Internet of Things'?",
+        "answer": "Network of physical objects embedded with sensors and software",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for secure web browsing?",
+        "answer": "HTTPS (HTTP Secure)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'API' stand for?",
+        "answer": "Application Programming Interface",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which sorting algorithm has best-case time complexity O(n)?",
+        "answer": "Insertion Sort",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Big Data'?",
+        "answer": "Extremely large data sets that may be analyzed computationally",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the JavaScript programming language?",
+        "answer": "Brendan Eich (while at Netscape)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'DNS' stand for?",
+        "answer": "Domain Name System",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which database operation is used to modify data?",
+        "answer": "UPDATE",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Natural Language Processing'?",
+        "answer": "AI field focused on interaction between computers and human language",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for router communication?",
+        "answer": "BGP (Border Gateway Protocol)",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'GPU' stand for?",
+        "answer": "Graphics Processing Unit",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which algorithm is used for pattern searching in strings?",
+        "answer": "KMP (Knuth-Morris-Pratt) Algorithm",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Software Development Life Cycle'?",
+        "answer": "Process for planning, creating, testing, deploying software",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which company developed the C# programming language?",
+        "answer": "Microsoft",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'CSS' do in web development?",
+        "answer": "Describes how HTML elements are displayed",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which data structure is LIFO (Last-In-First-Out)?",
+        "answer": "Stack",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Cybersecurity'?",
+        "answer": "Protection of internet-connected systems from cyber threats",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which protocol is used for email retrieval?",
+        "answer": "POP3 or IMAP",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What does 'IDE' stand for?",
+        "answer": "Integrated Development Environment",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Which sorting algorithm is known as 'exchange sort'?",
+        "answer": "Bubble Sort",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "What is 'Cloud Storage'?",
+        "answer": "Model of computer data storage in digital logical pools",
+        "genre": "Science & Technology (CSIT)"
+    },
+    {
+        "question": "Who invented the World Wide Web?",
+        "answer": "Tim Berners-Lee",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first computer mouse?",
+        "answer": "Xerox PARC",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was Python programming language created?",
+        "answer": "1991",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who is considered the father of computer science?",
+        "answer": "Alan Turing",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first electronic general-purpose computer?",
+        "answer": "ENIAC",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which year was Java programming language released?",
+        "answer": "1995",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the C programming language?",
+        "answer": "Dennis Ritchie",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first commercial microprocessor?",
+        "answer": "Intel 4004",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company developed the first smartphone?",
+        "answer": "IBM (Simon Personal Communicator)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the internet (ARPANET) created?",
+        "answer": "1969",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the transistor?",
+        "answer": "John Bardeen, Walter Brattain, William Shockley",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first programming language?",
+        "answer": "FORTRAN or Plankalkül",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company created the first graphical web browser?",
+        "answer": "NCSA Mosaic",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first iPhone released?",
+        "answer": "2007",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented Linux operating system?",
+        "answer": "Linus Torvalds",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first video game?",
+        "answer": "Tennis for Two or Spacewar!",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the USB?",
+        "answer": "Intel",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was Wi-Fi invented?",
+        "answer": "1997 (802.11 protocol)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the printing press?",
+        "answer": "Johannes Gutenberg",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer virus?",
+        "answer": "Creeper",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company created the first SSD?",
+        "answer": "StorageTek",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was Bluetooth invented?",
+        "answer": "1994",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the telephone?",
+        "answer": "Alexander Graham Bell",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first search engine?",
+        "answer": "Archie",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the hard disk drive?",
+        "answer": "IBM",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first email sent?",
+        "answer": "1971",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the light bulb?",
+        "answer": "Thomas Edison",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first social media platform?",
+        "answer": "Six Degrees",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the QR code?",
+        "answer": "Denso Wave",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first website created?",
+        "answer": "1991",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the periodic table?",
+        "answer": "Dmitri Mendeleev",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer with a GUI?",
+        "answer": "Xerox Alto",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the touchscreen?",
+        "answer": "CERN or IBM",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first text message sent?",
+        "answer": "1992",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the telescope?",
+        "answer": "Hans Lippershey",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first digital camera?",
+        "answer": "Kodak DCS 100",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the barcode?",
+        "answer": "IBM",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was GPS made available for civilian use?",
+        "answer": "1983",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented penicillin?",
+        "answer": "Alexander Fleming",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer animation?",
+        "answer": "Hummingbird (1967)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first laptop?",
+        "answer": "IBM (IBM 5100)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first video uploaded to YouTube?",
+        "answer": "2005",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the steam engine?",
+        "answer": "James Watt",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer network?",
+        "answer": "ARPANET",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first digital watch?",
+        "answer": "Hamilton Watch Company",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer game invented?",
+        "answer": "1962 (Spacewar!)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the radio?",
+        "answer": "Guglielmo Marconi",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first operating system?",
+        "answer": "GM-NAA I/O",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first calculator?",
+        "answer": "Texas Instruments",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer sold commercially?",
+        "answer": "1951 (UNIVAC I)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the airplane?",
+        "answer": "Wright Brothers",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer language for business?",
+        "answer": "COBOL",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first web server?",
+        "answer": "CERN",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer bug found?",
+        "answer": "1947",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the microscope?",
+        "answer": "Zacharias Janssen",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer with a hard drive?",
+        "answer": "IBM 305 RAMAC",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first digital computer?",
+        "answer": "ABC Computer or ENIAC team",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer chess program?",
+        "answer": "1951",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the television?",
+        "answer": "John Logie Baird",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer graphics software?",
+        "answer": "Sketchpad",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first spreadsheet software?",
+        "answer": "VisiCalc",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer conference?",
+        "answer": "1970",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the bicycle?",
+        "answer": "Karl von Drais",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer music?",
+        "answer": "IBM 7094 playing 'Daisy Bell'",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first digital assistant?",
+        "answer": "Apple (Siri)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer art created?",
+        "answer": "1960s",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the battery?",
+        "answer": "Alessandro Volta",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer with a color display?",
+        "answer": "IBM 2250",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first webcam?",
+        "answer": "Cambridge University",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer magazine published?",
+        "answer": "1974",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the printing calculator?",
+        "answer": "Burroughs",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer with a mouse?",
+        "answer": "Xerox Alto",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first smartphone OS?",
+        "answer": "Palm",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer science degree offered?",
+        "answer": "1962",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the first computer algorithm?",
+        "answer": "Ada Lovelace",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What was the first computer with a GUI for consumers?",
+        "answer": "Apple Macintosh",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Which company invented the first computer chip?",
+        "answer": "Texas Instruments or Intel",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What year was the first computer patent granted?",
+        "answer": "1964",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "Who invented the first computer network protocol?",
+        "answer": "Vinton Cerf and Bob Kahn (TCP/IP)",
+        "genre": "Inventions & Discoveries"
+    },
+    {
+        "question": "What is the main cause of COVID-19?",
+        "answer": "SARS-CoV-2 virus",
+        "genre": "Health"
+    },
+    {
+        "question": "Which vitamin is produced when skin is exposed to sunlight?",
+        "answer": "Vitamin D",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the normal human body temperature in Celsius?",
+        "answer": "37°C",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ pumps blood throughout the body?",
+        "answer": "Heart",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the largest organ of the human body?",
+        "answer": "Skin",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by deficiency of Vitamin C?",
+        "answer": "Scurvy",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for high blood pressure?",
+        "answer": "Hypertension",
+        "genre": "Health"
+    },
+    {
+        "question": "Which gland is known as the 'master gland'?",
+        "answer": "Pituitary gland",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the normal human heart rate per minute?",
+        "answer": "60-100 beats",
+        "genre": "Health"
+    },
+    {
+        "question": "Which mineral is essential for making hemoglobin?",
+        "answer": "Iron",
+        "genre": "Health"
+    },
+    {
+        "question": "What disease is caused by the deficiency of insulin?",
+        "answer": "Diabetes",
+        "genre": "Health"
+    },
+    {
+        "question": "Which part of the brain controls balance?",
+        "answer": "Cerebellum",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the study of cancer called?",
+        "answer": "Oncology",
+        "genre": "Health"
+    },
+    {
+        "question": "Which blood type is known as the universal donor?",
+        "answer": "O negative",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the average human breathing rate per minute?",
+        "answer": "12-20 breaths",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin D?",
+        "answer": "Rickets",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for a heart attack?",
+        "answer": "Myocardial infarction",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ produces bile?",
+        "answer": "Liver",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the normal human blood pH?",
+        "answer": "7.35-7.45",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of iodine?",
+        "answer": "Goiter",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the smallest bone in the human body?",
+        "answer": "Stapes (in ear)",
+        "genre": "Health"
+    },
+    {
+        "question": "Which vitamin is essential for blood clotting?",
+        "answer": "Vitamin K",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for low blood pressure?",
+        "answer": "Hypotension",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ filters blood and produces urine?",
+        "answer": "Kidneys",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the longest bone in the human body?",
+        "answer": "Femur (thigh bone)",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of calcium?",
+        "answer": "Osteoporosis",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for difficulty breathing?",
+        "answer": "Dyspnea",
+        "genre": "Health"
+    },
+    {
+        "question": "Which gland produces insulin?",
+        "answer": "Pancreas",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the normal human blood sugar level (fasting)?",
+        "answer": "70-100 mg/dL",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B1?",
+        "answer": "Beriberi",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for inflammation of the liver?",
+        "answer": "Hepatitis",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by tuberculosis?",
+        "answer": "Lungs",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for a stroke?",
+        "answer": "Cerebrovascular accident",
+        "genre": "Health"
+    },
+    {
+        "question": "Which vitamin is essential for good vision?",
+        "answer": "Vitamin A",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for cancer of the blood?",
+        "answer": "Leukemia",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by malaria?",
+        "answer": "Liver and red blood cells",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for high cholesterol?",
+        "answer": "Hypercholesterolemia",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B12?",
+        "answer": "Anemia",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for knee cap?",
+        "answer": "Patella",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by jaundice?",
+        "answer": "Liver",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for whooping cough?",
+        "answer": "Pertussis",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of protein?",
+        "answer": "Kwashiorkor",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for breastbone?",
+        "answer": "Sternum",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by pneumonia?",
+        "answer": "Lungs",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for low blood sugar?",
+        "answer": "Hypoglycemia",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B3?",
+        "answer": "Pellagra",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for collarbone?",
+        "answer": "Clavicle",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by cirrhosis?",
+        "answer": "Liver",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for shoulder blade?",
+        "answer": "Scapula",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B2?",
+        "answer": "Ariboflavinosis",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for hip bone?",
+        "answer": "Pelvis",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by glaucoma?",
+        "answer": "Eyes",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for windpipe?",
+        "answer": "Trachea",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B6?",
+        "answer": "Anemia and neurological issues",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for voice box?",
+        "answer": "Larynx",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by arthritis?",
+        "answer": "Joints",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for food pipe?",
+        "answer": "Esophagus",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B9?",
+        "answer": "Anemia (Folic acid deficiency)",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for thigh bone?",
+        "answer": "Femur",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by asthma?",
+        "answer": "Lungs",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for shin bone?",
+        "answer": "Tibia",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B5?",
+        "answer": "Paresthesia",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for calf bone?",
+        "answer": "Fibula",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by epilepsy?",
+        "answer": "Brain",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for jaw bone?",
+        "answer": "Mandible",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin B7?",
+        "answer": "Dermatitis and hair loss",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for skull?",
+        "answer": "Cranium",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by migraine?",
+        "answer": "Brain",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for backbone?",
+        "answer": "Spine or vertebral column",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of Vitamin E?",
+        "answer": "Neurological problems",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for rib cage?",
+        "answer": "Thorax",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by Alzheimer's?",
+        "answer": "Brain",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for wrist bones?",
+        "answer": "Carpals",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of zinc?",
+        "answer": "Growth retardation",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for ankle bones?",
+        "answer": "Tarsals",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by Parkinson's?",
+        "answer": "Brain",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for finger bones?",
+        "answer": "Phalanges",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of magnesium?",
+        "answer": "Muscle cramps",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for toe bones?",
+        "answer": "Phalanges",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by hepatitis?",
+        "answer": "Liver",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for arm bone?",
+        "answer": "Humerus",
+        "genre": "Health"
+    },
+    {
+        "question": "Which disease is caused by the deficiency of potassium?",
+        "answer": "Hypokalemia",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for forearm bones?",
+        "answer": "Radius and ulna",
+        "genre": "Health"
+    },
+    {
+        "question": "Which organ is affected by gastritis?",
+        "answer": "Stomach",
+        "genre": "Health"
+    },
+    {
+        "question": "What is the medical term for kneecap?",
+        "answer": "Patella",
+        "genre": "Health"
+    },
+    {
+        "question": "Which planet is known as the Red Planet?",
+        "answer": "Mars",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the largest planet in our solar system?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most moons?",
+        "answer": "Saturn",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the closest star to Earth?",
+        "answer": "Sun",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet is known for its rings?",
+        "answer": "Saturn",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the smallest planet in our solar system?",
+        "answer": "Mercury",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet is known as the Morning Star?",
+        "answer": "Venus",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the hottest planet in our solar system?",
+        "answer": "Venus",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the Great Red Spot?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of our galaxy?",
+        "answer": "Milky Way",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet is known as the Blue Planet?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first artificial satellite?",
+        "answer": "Sputnik 1",
+        "genre": "Space"
+    },
+    {
+        "question": "Who was the first human in space?",
+        "answer": "Yuri Gagarin",
+        "genre": "Space"
+    },
+    {
+        "question": "Who was the first woman in space?",
+        "answer": "Valentina Tereshkova",
+        "genre": "Space"
+    },
+    {
+        "question": "Which country first landed on the moon?",
+        "answer": "United States (Apollo 11)",
+        "genre": "Space"
+    },
+    {
+        "question": "Who was the first person to walk on the moon?",
+        "answer": "Neil Armstrong",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of NASA's Mars rover that landed in 2021?",
+        "answer": "Perseverance",
+        "genre": "Space"
+    },
+    {
+        "question": "Which telescope was launched in 2021 to replace Hubble?",
+        "answer": "James Webb Space Telescope",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the black hole photographed in 2019?",
+        "answer": "M87*",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most volcanic activity?",
+        "answer": "Venus",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of Saturn's largest moon?",
+        "answer": "Titan",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet rotates on its side?",
+        "answer": "Uranus",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of Jupiter's largest moon?",
+        "answer": "Ganymede",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the shortest day?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first private company to send astronauts to ISS?",
+        "answer": "SpaceX",
+        "genre": "Space"
+    },
+    {
+        "question": "Which country's space agency is called ISRO?",
+        "answer": "India",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of China's space station?",
+        "answer": "Tiangong",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the longest year?",
+        "answer": "Neptune",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first reusable spacecraft?",
+        "answer": "Space Shuttle",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet is known for its extreme winds?",
+        "answer": "Neptune",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first dog in space?",
+        "answer": "Laika",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most Earth-like conditions?",
+        "answer": "Mars",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first space tourist?",
+        "answer": "Dennis Tito",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most dense atmosphere?",
+        "answer": "Venus",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first commercial spaceflight company?",
+        "answer": "SpaceX",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most visible rings?",
+        "answer": "Saturn",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first space station?",
+        "answer": "Salyut 1",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most moons discovered in 2023?",
+        "answer": "Saturn",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of NASA's mission to return humans to the moon?",
+        "answer": "Artemis",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most elliptical orbit?",
+        "answer": "Mercury",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first successful Mars helicopter?",
+        "answer": "Ingenuity",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most lightning?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first interstellar object detected?",
+        "answer": "Oumuamua",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most water?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first commercial satellite?",
+        "answer": "Telstar 1",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most methane in its atmosphere?",
+        "answer": "Uranus",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first GPS satellite?",
+        "answer": "Navstar 1",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most carbon dioxide?",
+        "answer": "Venus",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first weather satellite?",
+        "answer": "TIROS-1",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most nitrogen in its atmosphere?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first communication satellite?",
+        "answer": "Echo 1",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most oxygen in its atmosphere?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first solar-powered satellite?",
+        "answer": "Vanguard 1",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most hydrogen in its atmosphere?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to orbit another planet?",
+        "answer": "Mariner 9 (Mars)",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most helium in its atmosphere?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to land on another planet?",
+        "answer": "Mars 3 (Mars)",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most argon in its atmosphere?",
+        "answer": "Mars",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to orbit the sun?",
+        "answer": "Pioneer 5",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most neon in its atmosphere?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to photograph Earth from space?",
+        "answer": "Explorer 6",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most krypton in its atmosphere?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to detect cosmic rays?",
+        "answer": "Sputnik 2",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most xenon in its atmosphere?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study Earth's magnetic field?",
+        "answer": "Explorer 1",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most radon in its atmosphere?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to measure Earth's radiation?",
+        "answer": "Explorer 7",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most ozone in its atmosphere?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to map Earth's gravity?",
+        "answer": "GRACE",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most water vapor in its atmosphere?",
+        "answer": "Earth",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study solar wind?",
+        "answer": "Mariner 2",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most clouds?",
+        "answer": "Venus",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study cosmic microwave background?",
+        "answer": "COBE",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most dust storms?",
+        "answer": "Mars",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study dark matter?",
+        "answer": "Fermi Gamma-ray Space Telescope",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most auroras?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study exoplanets?",
+        "answer": "Kepler",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most volcanic moons?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study black holes?",
+        "answer": "Chandra X-ray Observatory",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most icy moons?",
+        "answer": "Saturn",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study neutron stars?",
+        "answer": "Rossi X-ray Timing Explorer",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most rocky moons?",
+        "answer": "Mars",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study gamma-ray bursts?",
+        "answer": "Compton Gamma Ray Observatory",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most irregular moons?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study solar flares?",
+        "answer": "Solar Maximum Mission",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most trojan asteroids?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study magnetars?",
+        "answer": "Swift",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most centaurs?",
+        "answer": "Jupiter",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study pulsars?",
+        "answer": "Uhuru",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most trans-neptunian objects?",
+        "answer": "Neptune",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study quasars?",
+        "answer": "Hubble Space Telescope",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most kuiper belt objects?",
+        "answer": "Neptune",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study supernovae?",
+        "answer": "Einstein Observatory",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most oort cloud objects?",
+        "answer": "All planets share the Oort cloud",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study dark energy?",
+        "answer": "Wilkinson Microwave Anisotropy Probe",
+        "genre": "Space"
+    },
+    {
+        "question": "Which planet has the most interstellar objects?",
+        "answer": "All planets encounter them rarely",
+        "genre": "Space"
+    },
+    {
+        "question": "What is the name of the first satellite to study gravitational waves?",
+        "answer": "LIGO (ground-based) or LISA Pathfinder",
+        "genre": "Space"
+    },
+    {
+        "question": "Which Nepali scientist won the 'Yuwa Vigyan Puraskar' (Young Scientist Award) in 2023 from NAST?",
+        "answer": "Dr. Prabin Adhikari",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who received the 'Madan Puraskar' for literature in 2023?",
+        "answer": "Buddhi Sagar Chudal for 'Bhanu Bhakta Ramayana'",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali environmentalist won the 'SEED Award' in 2024 for sustainable development?",
+        "answer": "Sanu Babu Sunar",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who won the 'Jagadamba Shree Award' in 2023 for contributions to Nepali arts?",
+        "answer": "Satya Mohan Joshi",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali researcher received the 'INSA Young Scientist Medal' in 2024?",
+        "answer": "Dr. Suresh Kumar Dhungel",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who was awarded the 'Gorkha Dakshin Bahu' medal in 2024?",
+        "answer": "Shree Krishna Shrestha",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali journalist received the 'Best Investigative Journalism Award' in 2023?",
+        "answer": "Kundan Aryal",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who won the 'Nepa~laya Music Award' for Best Singer in 2024?",
+        "answer": "Sajjan Raj Vaidya",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali filmmaker received the 'Best Director Award' at Nepal International Film Festival 2023?",
+        "answer": "Min Bahadur Bham",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who received the 'Lifetime Achievement Award' at the National Film Awards 2023?",
+        "answer": "Tulsi Ghimire",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali entrepreneur won the 'Forbes 30 Under 30 Asia' award in 2024?",
+        "answer": "Aayushi KC",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who received the 'NRNA Youth Excellence Award' in 2023?",
+        "answer": "Anil Chitrakar",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali scientist won the 'TWAS Young Scientist Award' in 2024?",
+        "answer": "Dr. Resham Bahadur Thapa",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who was awarded the 'Best Nepali IT Entrepreneur' award in 2023?",
+        "answer": "Ravi Singh",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali environmental activist received the 'Green Talents Award' in 2024?",
+        "answer": "Prajwal Shrestha",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who won the 'Nepal Literature Festival Award' for Best Book in 2023?",
+        "answer": "Shanta Chaudhary for 'Dui Rupaiyan'",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali architect received the 'National Design Award' in 2024?",
+        "answer": "Sangeeta Thapa",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who was awarded the 'Best Social Entrepreneur Award' in Nepal in 2023?",
+        "answer": "Mahabir Pun",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali AI researcher won the 'Google Research Scholar Award' in 2024?",
+        "answer": "Dr. Niraj Niraula",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who received the 'Nepal Academy Award' for literature in 2023?",
+        "answer": "Kumar Nagarkoti",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali cybersecurity expert won the 'Best White Hat Hacker' award in 2024?",
+        "answer": "Santosh Pandey",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who was awarded the 'Youth Innovation Award' by UNDP Nepal in 2023?",
+        "answer": "Sabita Banskota",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali data scientist won the 'Kaggle Competition Award' in 2024?",
+        "answer": "Rajesh K.C.",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who received the 'Best Female Entrepreneur Award' in Nepal's tech sector in 2023?",
+        "answer": "Sulav Poudel",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali researcher won the 'Elsevier Young Scientist Award' in 2024?",
+        "answer": "Dr. Anil Shrestha",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who was awarded the 'National ICT Award' for digital innovation in 2023?",
+        "answer": "Bibek Koirala",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali AI startup won the 'National Innovation Award' in 2024?",
+        "answer": "Paaila Technology",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who received the 'Best STEM Educator Award' in Nepal in 2023?",
+        "answer": "Dr. Bishnu Poudel",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which Nepali open-source contributor won the 'GitHub Arctic Code Vault' award in 2024?",
+        "answer": "Sagar Sapkota",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Who won the 'Best AI Research Paper Award' at a Nepal conference in 2023?",
+        "answer": "Anish Shrestha",
+        "genre": "Awards (Nepal)"
+    },
+    {
+        "question": "Which conflict saw a major escalation in 2023 with the Hamas attack on Israel?",
+        "answer": "Israel-Hamas conflict",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country experienced a major earthquake in February 2023 killing over 50,000 people?",
+        "answer": "Turkey and Syria",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which global health organization declared the end of COVID-19 as a global health emergency in 2023?",
+        "answer": "World Health Organization (WHO)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country launched the 'Global South Summit' in 2023?",
+        "answer": "India",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What was the main outcome of COP27 held in Egypt in 2022?",
+        "answer": "Establishment of loss and damage fund for vulnerable countries",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country faced a banking crisis with the collapse of Silicon Valley Bank in 2023?",
+        "answer": "United States",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which European country joined NATO in 2023 after Russia's invasion of Ukraine?",
+        "answer": "Finland",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country launched the 'Global Gateway' initiative to counter China's Belt and Road?",
+        "answer": "European Union",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What was the main agenda of the G20 Summit in New Delhi in 2023?",
+        "answer": "One Earth, One Family, One Future and African Union inclusion",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country experienced the deadliest wildfire in over a century in 2023?",
+        "answer": "Hawaii, USA (Lahaina fire)",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which country launched the 'Indo-Pacific Economic Framework' (IPEF) in 2023?",
+        "answer": "United States",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "Which international treaty on plastic pollution was adopted in 2023?",
+        "answer": "Global Plastic Treaty",
+        "genre": "Current Affairs (International)"
+    },
+    {
+        "question": "What is Nepal's ranking in the UN Human Development Index 2023?",
+        "answer": "146th out of 191 countries",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali city was ranked as the most polluted city in the world in 2023?",
+        "answer": "Kathmandu",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is the name of Nepal's digital payment system launched in 2023 for government services?",
+        "answer": "Nagarik App",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali airport started international flights in 2023?",
+        "answer": "Pokhara International Airport",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What was Nepal's economic growth rate in fiscal year 2022/23?",
+        "answer": "Approximately 1.9%",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali company launched Nepal's first AI-powered chatbot in 2024?",
+        "answer": "F1Soft International",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is the name of Nepal's first blockchain-based land registry system?",
+        "answer": "Digital Land Information System",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali university started offering PhD in Artificial Intelligence in 2024?",
+        "answer": "Tribhuvan University",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What percentage of Nepali population uses mobile banking as of 2024?",
+        "answer": "Over 60%",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali tech startup raised the highest funding in 2023?",
+        "answer": "Foodmario",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "What is the name of Nepal's cybersecurity emergency response team?",
+        "answer": "npCERT",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which Nepali e-commerce platform partnered with Amazon for international deliveries in 2024?",
+        "answer": "Daraz",
+        "genre": "Current Affairs (Nepal)"
+    },
+    {
+        "question": "Which country's researchers discovered room-temperature superconductor LK-99 in 2023?",
+        "answer": "South Korea",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major physics breakthrough was announced by Fermilab in 2023 regarding muons?",
+        "answer": "Muon g-2 experiment confirming physics beyond Standard Model",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which company announced the first successful quantum supremacy experiment in 2023?",
+        "answer": "Google (Sycamore processor)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major climate record was broken in 2023 according to NASA?",
+        "answer": "Hottest year on record",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country's scientists created the first synthetic human embryo in 2023?",
+        "answer": "United Kingdom",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major discovery was made about the Milky Way's black hole in 2023?",
+        "answer": "First image of Sagittarius A*'s magnetic fields",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country launched the world's first fourth-generation nuclear reactor in 2023?",
+        "answer": "China (Shidao Bay plant)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What was the significant finding about Mars' core in 2023?",
+        "answer": "Mars has a liquid core with molten iron",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country's researchers achieved nuclear fusion ignition for the second time in 2023?",
+        "answer": "United States (National Ignition Facility)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major genetic engineering breakthrough was announced in 2023 for cancer treatment?",
+        "answer": "First CRISPR-based therapy approved for sickle cell disease",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country discovered the world's largest bacterium in 2023?",
+        "answer": "France (Thiomargarita magnifica)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What was the significant finding about dinosaur extinction in 2023?",
+        "answer": "Evidence that dinosaurs were already declining before asteroid impact",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country's scientists discovered a new state of matter in 2023?",
+        "answer": "United States (Chiral bose-liquid state)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major ocean discovery was made in 2023 regarding marine life?",
+        "answer": "Discovery of 5,000 new species in Clarion-Clipperton Zone",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country announced breakthrough in room-temperature superconductor in 2024?",
+        "answer": "South Korea (LK-99 material)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What was the significant climate finding about Antarctica in 2023?",
+        "answer": "Record low sea ice extent",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country's researchers created the first brain-computer interface for paralysis patients in 2023?",
+        "answer": "Switzerland",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major discovery was made about quantum entanglement in 2023?",
+        "answer": "Quantum entanglement at macroscopic scale demonstrated",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country announced the first successful pig-to-human heart transplant in 2023?",
+        "answer": "United States",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What was the significant finding about the universe's expansion rate in 2023?",
+        "answer": "Hubble tension remains unresolved",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country's scientists created artificial womb for premature lambs in 2023?",
+        "answer": "Australia",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major archaeological discovery was made in Egypt in 2023?",
+        "answer": "Discovery of 4,300-year-old mummy in Saqqara",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country announced breakthrough in battery technology with sodium-ion batteries in 2023?",
+        "answer": "China (CATL)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What was the significant finding about human evolution in 2023?",
+        "answer": "Oldest human DNA from 2 million years ago sequenced",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country's researchers discovered water on asteroid surface in 2023?",
+        "answer": "United States (NASA's OSIRIS-REx)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What major neuroscience breakthrough was announced in 2023?",
+        "answer": "First complete brain map of insect (fruit fly)",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which country announced successful test of hypersonic missile in 2023?",
+        "answer": "North Korea",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "What was the significant finding about exoplanets in 2023?",
+        "answer": "Discovery of Earth-sized exoplanet in habitable zone of red dwarf",
+        "genre": "Current Affairs (Science)"
+    },
+    {
+        "question": "Which company launched GPT-4 in March 2023?",
+        "answer": "OpenAI",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What major AI regulation was proposed by the European Union in 2023?",
+        "answer": "AI Act",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company announced its quantum computer with over 1000 qubits in 2023?",
+        "answer": "IBM (Condor processor)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What was the major cybersecurity incident involving Microsoft in 2023?",
+        "answer": "Chinese hackers breached US government emails via Microsoft cloud",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company launched Threads as a Twitter competitor in 2023?",
+        "answer": "Meta",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What major tech acquisition was blocked by regulators in 2023?",
+        "answer": "Microsoft's acquisition of Activision Blizzard (initially blocked, then approved)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company announced humanoid robot Optimus in 2023?",
+        "answer": "Tesla",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What was the major data breach affecting over 200 million users in 2023?",
+        "answer": "23andMe data breach",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company launched the Vision Pro mixed reality headset in 2023?",
+        "answer": "Apple",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What major cryptocurrency exchange collapsed in 2023?",
+        "answer": "FTX",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company announced it would stop supporting third-party cookies in Chrome in 2024?",
+        "answer": "Google",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What was the major satellite internet milestone achieved in 2023?",
+        "answer": "Starlink reached 1.5 million subscribers",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company launched the first 5G satellite for direct-to-phone service in 2023?",
+        "answer": "SpaceX (Starlink)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What major advancement in battery technology was announced in 2023?",
+        "answer": "Toyota's solid-state battery breakthrough",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company faced major antitrust lawsuits in 2023?",
+        "answer": "Google (multiple lawsuits from US DOJ and states)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What was the major development in autonomous vehicles in 2023?",
+        "answer": "Waymo expanded driverless taxi service to Los Angeles",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company announced it would lay off 10,000 employees in 2023?",
+        "answer": "Amazon",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What major advancement in nuclear fusion was announced in 2023?",
+        "answer": "First net energy gain achieved at National Ignition Facility",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company launched its own AI chips to compete with Nvidia in 2023?",
+        "answer": "Google (TPU v5)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What was the major development in electric vehicle batteries in 2023?",
+        "answer": "CATL announced condensed battery with 500 Wh/kg energy density",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company announced quantum supremacy with 127-qubit processor in 2023?",
+        "answer": "IBM",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What major advancement in 6G research was announced in 2023?",
+        "answer": "First 6G prototype achieving 100 Gbps speed",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company launched its own large language model to compete with ChatGPT in 2023?",
+        "answer": "Anthropic (Claude)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What was the major development in brain-computer interfaces in 2023?",
+        "answer": "Neuralink received FDA approval for human trials",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company announced breakthrough in perovskite solar cells in 2023?",
+        "answer": "Oxford PV",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What major advancement in hydrogen fuel cells was announced in 2023?",
+        "answer": "Toyota's new hydrogen engine with 40% efficiency",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Which company launched the first satellite with AI onboard in 2023?",
+        "answer": "NASA (Intelligent Satellite)",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "What was the major development in Web3 technology in 2023?",
+        "answer": "Ethereum's Shanghai upgrade enabling staking withdrawals",
+        "genre": "Current Affairs (Technology)"
+    },
+    {
+        "question": "Who won the 2024 Pulitzer Prize for Fiction?",
+        "answer": "Barbara Kingsolver for 'Demon Copperhead'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Man Booker International Prize?",
+        "answer": "Georgi Gospodinov for 'Time Shelter'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Academy Award for Best Director?",
+        "answer": "Christopher Nolan for 'Oppenheimer'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Nobel Peace Prize?",
+        "answer": "Narges Mohammadi",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Grammy Award for Best New Artist?",
+        "answer": "Victoria Monét",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Women's Ballon d'Or?",
+        "answer": "Aitana Bonmatí",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Tony Award for Best Musical?",
+        "answer": "Kimberly Akimbo",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Academy Award for Best Actress?",
+        "answer": "Emma Stone for 'Poor Things'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Academy Award for Best Actor?",
+        "answer": "Cillian Murphy for 'Oppenheimer'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Nobel Prize in Chemistry?",
+        "answer": "Moungi Bawendi, Louis Brus and Alexei Ekimov for quantum dots",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Nobel Prize in Literature?",
+        "answer": "Jon Fosse",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Nobel Prize in Economics?",
+        "answer": "Claudia Goldin",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 BAFTA Award for Best Film?",
+        "answer": "Oppenheimer",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Golden Globe for Best Drama Film?",
+        "answer": "Oppenheimer",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Emmy Award for Best Drama Series?",
+        "answer": "Succession",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 International Emmy Award?",
+        "answer": "The Great British Bake Off",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Screen Actors Guild Award for Best Ensemble?",
+        "answer": "Oppenheimer",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Critics Choice Award for Best Picture?",
+        "answer": "Oppenheimer",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 National Book Award?",
+        "answer": "Justin Torres for 'Blackouts'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 PEN/Faulkner Award?",
+        "answer": "Nathan Hill for 'Wellness'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "Who won the 2024 Hugo Award for Best Novel?",
+        "answer": "N.K. Jemisin for 'The World We Make'",
+        "genre": "Important Awards"
+    },
+    {
+        "question": "What is the name of Google's AI model that powers Bard chatbot?",
+        "answer": "PaLM (Pathways Language Model)",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which company developed the Stable Diffusion AI image generator?",
+        "answer": "Stability AI",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What does 'LLM' stand for in artificial intelligence?",
+        "answer": "Large Language Model",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI technique is used for generating realistic human faces?",
+        "answer": "Generative Adversarial Networks (GANs)",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is the name of Meta's open-source large language model?",
+        "answer": "LLaMA (Large Language Model Meta AI)",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI algorithm is used for playing complex games like Go and Chess?",
+        "answer": "Reinforcement Learning",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What does 'NLP' stand for in AI?",
+        "answer": "Natural Language Processing",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which company developed the DALL-E AI image generator?",
+        "answer": "OpenAI",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Deepfake' technology primarily used for?",
+        "answer": "Creating realistic but fake audio/video content",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI model architecture is used in Transformers?",
+        "answer": "Attention mechanism",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Computer Vision' in AI?",
+        "answer": "Field of AI that enables computers to interpret visual information",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which company developed the AlphaFold AI for protein folding?",
+        "answer": "DeepMind (Google)",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What does 'GPT' stand for in ChatGPT?",
+        "answer": "Generative Pre-trained Transformer",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI technique is used for recommendation systems?",
+        "answer": "Collaborative Filtering",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Transfer Learning' in AI?",
+        "answer": "Using knowledge from one task to improve learning in another task",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which company developed the Midjourney AI image generator?",
+        "answer": "Midjourney, Inc.",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Supervised Learning' in machine learning?",
+        "answer": "Training algorithm with labeled data",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI model is used for time series prediction?",
+        "answer": "Recurrent Neural Networks (RNNs)",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Unsupervised Learning' in machine learning?",
+        "answer": "Training algorithm with unlabeled data to find patterns",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which company developed the BERT language model?",
+        "answer": "Google",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Reinforcement Learning' in AI?",
+        "answer": "Training algorithm through rewards and punishments",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI technique is used for image classification?",
+        "answer": "Convolutional Neural Networks (CNNs)",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Neural Network' in AI?",
+        "answer": "Computing system inspired by biological neural networks",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which company developed the Whisper speech recognition AI?",
+        "answer": "OpenAI",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Overfitting' in machine learning?",
+        "answer": "Model performs well on training data but poorly on new data",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI algorithm is used for clustering similar items?",
+        "answer": "K-means clustering",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Underfitting' in machine learning?",
+        "answer": "Model fails to capture underlying pattern of data",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Which AI model is used for sequence-to-sequence tasks like translation?",
+        "answer": "Transformer models",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "What is 'Feature Engineering' in machine learning?",
+        "answer": "Creating new input features from existing data",
+        "genre": "Science & Technology (AI)"
+    },
+    {
+        "question": "Who won the 2024 ICC Men's T20 World Cup?",
+        "answer": "India",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 UEFA Champions League?",
+        "answer": "Real Madrid",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Australian Open Men's Singles?",
+        "answer": "Jannik Sinner",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Australian Open Women's Singles?",
+        "answer": "Aryna Sabalenka",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 French Open Men's Singles?",
+        "answer": "Carlos Alcaraz",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 French Open Women's Singles?",
+        "answer": "Iga Świątek",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Wimbledon Men's Singles?",
+        "answer": "Carlos Alcaraz",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Wimbledon Women's Singles?",
+        "answer": "Markéta Vondroušová",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 US Open Men's Singles?",
+        "answer": "Novak Djokovic",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 US Open Women's Singles?",
+        "answer": "Coco Gauff",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 NBA Most Valuable Player (MVP) award?",
+        "answer": "Nikola Jokić",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Super Bowl?",
+        "answer": "Kansas City Chiefs",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 FIFA Club World Cup?",
+        "answer": "Manchester City",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Formula 1 World Championship?",
+        "answer": "Max Verstappen",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Tour de France?",
+        "answer": "Jonas Vingegaard",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 World Athletics Championships 100m men's?",
+        "answer": "Noah Lyles",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 World Athletics Championships 100m women's?",
+        "answer": "Sha'Carri Richardson",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Cricket World Cup (ODI)?",
+        "answer": "Australia",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 Asia Cup (Cricket)?",
+        "answer": "India",
+        "genre": "Sports"
+    },
+    {
+        "question": "Who won the 2024 IPL (Indian Premier League)?",
+        "answer": "Chennai Super Kings",
+        "genre": "Sports"
+    },
+    {
+        "question": "Which Nepali cricket team won the Prime Minister Cup in 2024?",
+        "answer": "Nepal Police Club",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali player scored the first century in T20 International for Nepal?",
+        "answer": "Kushal Malla",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali footballer was named Best Goalkeeper in SAFF Championship 2023?",
+        "answer": "Kiran Chemjong",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali athlete won gold in South Asian Games 2023?",
+        "answer": "Saraswati Bhatta (athletics)",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali cricket team won the Everest Premier League in 2023?",
+        "answer": "Biratnagar Super Kings",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali footballer plays for a foreign professional club?",
+        "answer": "Anjan Bista (plays in India)",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali swimmer set a national record in 2023?",
+        "answer": "Gaurika Singh",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali badminton player won National Championship in 2023?",
+        "answer": "Prince Dahal",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali boxer qualified for Olympics 2024?",
+        "answer": "No Nepali boxer qualified for 2024 Olympics",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali volleyball team won National Championship in 2023?",
+        "answer": "Tribhuvan Army Club",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali athlete holds the national record in marathon?",
+        "answer": "Buddhi Bahadur Tamang",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali cricket team won Women's National Cricket Tournament in 2023?",
+        "answer": "Armed Police Force Club",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali footballer scored the most goals in 2023?",
+        "answer": "Anjan Bista",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali athlete won gold in National Games 2023?",
+        "answer": "Multiple athletes - need specific event",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali cricket captain led the team in 2024 T20 World Cup?",
+        "answer": "Rohit Paudel",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali football club won the Martyrs Memorial A-Division League in 2023?",
+        "answer": "Machhindra Football Club",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali athlete won a medal in Asian Games 2023?",
+        "answer": "No medal in 2023. Last medal was in 2018.",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali cricket bowler took the most wickets in 2023?",
+        "answer": "Sandeep Lamichhane",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali tennis player won National Championship in 2023?",
+        "answer": "Abhishek Bastola",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali athlete holds the national record in 100m?",
+        "answer": "Krishna Chaudhary",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali cricket team won the U-19 National Tournament in 2023?",
+        "answer": "Bagmati Province",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali footballer was named MVP in 2023?",
+        "answer": "Bimal Gharti Magar",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali athlete won gold in National Athletics Championship 2023?",
+        "answer": "Multiple athletes - need specific event",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali cricket batsman has the highest ODI score?",
+        "answer": "Rohit Paudel (126 runs)",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali football club has won the most A-Division titles?",
+        "answer": "Manang Marshyangdi Club",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali athlete represented Nepal in Olympics 2024?",
+        "answer": "No Nepali athlete qualified for 2024 Olympics as of now",
+        "genre": "Sports (Nepal)"
+    },
+    {
+        "question": "Which Nepali cricket team won the Pro Club Championship in 2023?",
+        "answer": "Nepal Police Club",
+        "genre": "Sports (Nepal)"
+    }
+]
